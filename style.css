@@ -1,0 +1,458 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255, 140, 0, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 80, 80, 0.14), transparent 24%),
+    linear-gradient(160deg, #121212 0%, #1b1b1b 45%, #101010 100%);
+  color: #f5f5f5;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 32px 16px 50px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.2rem;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #cfcfcf;
+  font-size: 1.08rem;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.55rem;
+  color: #ffffff;
+}
+
+.card h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+}
+
+.ingredients-box,
+.category-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ingredient-btn,
+.category-btn {
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8f8f8;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.ingredient-btn:hover,
+.category-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 166, 77, 0.7);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ingredient-btn.selected {
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 8px 18px rgba(255, 122, 24, 0.35);
+}
+
+.active-category {
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 8px 18px rgba(255, 122, 24, 0.35);
+}
+
+.custom-input-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.custom-input-row input {
+  flex: 1;
+  min-width: 220px;
+  padding: 13px 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.custom-input-row input::placeholder {
+  color: #bbbbbb;
+}
+
+.small-btn,
+.main-btn,
+.secondary-btn,
+.remove-favorite-btn,
+.add-grocery-btn,
+.remove-grocery-btn {
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 600;
+}
+
+.small-btn {
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+.main-btn {
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-size: 16px;
+  box-shadow: 0 10px 22px rgba(255, 122, 24, 0.26);
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 16px;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.small-clear-btn {
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.small-btn:hover,
+.main-btn:hover,
+.secondary-btn:hover,
+.remove-favorite-btn:hover,
+.add-grocery-btn:hover,
+.remove-grocery-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.97;
+}
+
+.selected-display {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 14px;
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ingredient-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  padding: 7px 12px;
+  margin: 5px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 14px rgba(255, 122, 24, 0.22);
+}
+
+.ingredient-tag:hover {
+  opacity: 0.88;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 26px 0;
+  flex-wrap: wrap;
+}
+
+.results-card ul,
+#favoritesList,
+#groceryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.results-card li,
+#favoritesList li,
+#groceryList li {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 10px 0;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 16px;
+}
+
+.meal-card {
+  text-align: left;
+  cursor: pointer;
+}
+
+.meal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.meal-title {
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.favorite-btn {
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.favorite-btn:hover {
+  transform: scale(1.15);
+}
+
+.meal-category {
+  display: inline-block;
+  font-size: 12px;
+  color: #ffd3b0;
+  text-transform: capitalize;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 122, 24, 0.14);
+  border: 1px solid rgba(255, 122, 24, 0.2);
+}
+
+.meal-ingredients {
+  font-size: 14px;
+  color: #d8d8d8;
+  margin-bottom: 8px;
+}
+
+.meal-instructions {
+  font-size: 14px;
+  color: #f0f0f0;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.meal-missing {
+  color: #ffb370;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.meal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.add-grocery-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.add-grocery-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.close-match-title {
+  margin: 10px 0 14px;
+  font-size: 1.35rem;
+  color: #ffffff;
+}
+
+.favorite-item,
+.grocery-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #f5f5f5;
+}
+
+.remove-favorite-btn,
+.remove-grocery-btn {
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: linear-gradient(180deg, #232323 0%, #181818 100%);
+  color: white;
+  margin: 8% auto;
+  padding: 26px;
+  border-radius: 22px;
+  width: 90%;
+  max-width: 520px;
+  position: relative;
+  animation: fadeIn 0.2s ease;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.modal-actions button {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ff7a18, #ff9f43);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#modalTitle {
+  margin-top: 8px;
+  margin-bottom: 14px;
+  font-size: 1.8rem;
+}
+
+#modalCategory,
+#modalIngredients,
+#modalInstructions {
+  margin: 10px 0;
+  line-height: 1.6;
+  color: #e8e8e8;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .main-btn,
+  .secondary-btn,
+  .small-btn,
+  .add-grocery-btn {
+    width: 100%;
+  }
+
+  .custom-input-row {
+    flex-direction: column;
+  }
+
+  .meal-header,
+  .favorite-item,
+  .grocery-item,
+  .section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .favorite-btn {
+    align-self: flex-end;
+  }
+
+  .modal-content {
+    margin: 20% auto;
+    padding: 22px;
+  }
+}
