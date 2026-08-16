@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Find Meals | CookLikeMe</title>
+
+  <meta
+    name="description"
+    content="Find meals based on ingredients you already have with CookLikeMe."
+  />
+
+  <meta name="theme-color" content="#0b0b0d" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="icon-192.png" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="meals.css" />
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <header class="topbar">
+    <div class="nav-shell">
+
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CLM</div>
+
+        <div class="brand-text">
+          <strong>CookLikeMe</strong>
+          <span>Cook with what you have.</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="meals.html">Find Meals</a>
+        <a class="nav-link" href="builder.html">Build My Plate</a>
+        <a class="nav-link" href="saved.html">Saved</a>
+        <a class="nav-link" href="grocery.html">Grocery</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="finder-hero">
+
+      <div class="page-shell">
+
+        <p class="eyebrow">
+          FIND SOMETHING GOOD
+        </p>
+
+        <h1>
+          What do you have?
+        </h1>
+
+        <p class="finder-intro">
+          Pick what's already in your kitchen. CookLikeMe will look for
+          exact matches, close matches and meals worth making.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- MODE SWITCHER -->
+    <section class="finder-section">
+
+      <div class="page-shell">
+
+        <div class="finder-block">
+
+          <div class="finder-block-heading">
+
+            <div>
+              <p class="section-kicker">CHOOSE YOUR LANE</p>
+              <h2>What are we making?</h2>
+            </div>
+
+          </div>
+
+
+          <div class="mode-tabs" id="modeTabs">
+
+            <button
+              class="mode-tab active"
+              data-mode="regular"
+            >
+              <span class="mode-emoji">🍽️</span>
+              <span>
+                <strong>Food</strong>
+                <small>Regular meals</small>
+              </span>
+            </button>
+
+
+            <button
+              class="mode-tab"
+              data-mode="healthy"
+            >
+              <span class="mode-emoji">🥗</span>
+              <span>
+                <strong>Healthy</strong>
+                <small>Separate healthy lane</small>
+              </span>
+            </button>
+
+
+            <button
+              class="mode-tab"
+              data-mode="shakes"
+            >
+              <span class="mode-emoji">🥤</span>
+              <span>
+                <strong>Shakes</strong>
+                <small>Protein & smoothies</small>
+              </span>
+            </button>
+
+
+            <button
+              class="mode-tab"
+              data-mode="drinks"
+            >
+              <span class="mode-emoji">🍹</span>
+              <span>
+                <strong>Drinks</strong>
+                <small>Mocktails & cocktails</small>
+              </span>
+            </button>
+
+
+            <button
+              class="mode-tab"
+              data-mode="desserts"
+            >
+              <span class="mode-emoji">🍰</span>
+              <span>
+                <strong>Desserts</strong>
+                <small>Something sweet</small>
+              </span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- INGREDIENT PICKER -->
+    <section class="finder-section ingredients-section">
+
+      <div class="page-shell">
+
+        <div class="finder-block">
+
+          <div class="finder-block-heading">
+
+            <div>
+              <p class="section-kicker">YOUR KITCHEN</p>
+
+              <h2>Pick your ingredients</h2>
+
+              <p>
+                Start with the main stuff. Seasonings and sauces help,
+                but CookLikeMe won't treat missing salt like you're missing dinner.
+              </p>
+            </div>
+
+            <button
+              id="clearIngredientsBtn"
+              class="finder-small-btn"
+            >
+              Clear All
+            </button>
+
+          </div>
+
+
+          <!-- CUSTOM INGREDIENT -->
+          <div class="custom-ingredient-row">
+
+            <input
+              type="text"
+              id="customIngredientInput"
+              placeholder="Don't see something? Add it here..."
+              autocomplete="off"
+            />
+
+            <button
+              id="addCustomIngredientBtn"
+              class="finder-add-btn"
+            >
+              Add
+            </button>
+
+          </div>
+
+
+          <!-- SELECTED -->
+          <div class="selected-area">
+
+            <p class="selected-label">
+              SELECTED
+            </p>
+
+            <div
+              id="selectedIngredients"
+              class="selected-tags"
+            ></div>
+
+          </div>
+
+
+          <!-- GROUPS -->
+          <div
+            id="ingredientGroups"
+            class="ingredient-groups"
+          ></div>
+
+
+          <!-- FIND BUTTON -->
+          <div class="find-action-wrap">
+
+            <button
+              id="findMealsBtn"
+              class="big-find-btn"
+            >
+              Find My Meals
+            </button>
+
+            <button
+              id="surpriseBtn"
+              class="surprise-btn"
+            >
+              Surprise Me
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- BEST MATCH -->
+    <section
+      id="resultsSection"
+      class="finder-section"
+    >
+
+      <div class="page-shell">
+
+        <div class="section-heading compact">
+
+          <p class="section-kicker">
+            YOUR BEST MOVE
+          </p>
+
+          <h2>
+            Best Match
+          </h2>
+
+          <p>
+            The strongest fit based on what you selected.
+          </p>
+
+        </div>
+
+
+        <div id="bestMatch"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+    <section class="finder-section results-section">
+
+      <div class="page-shell">
+
+        <div class="results-heading">
+
+          <div>
+            <p class="section-kicker">
+              MORE IDEAS
+            </p>
+
+            <h2>
+              Meals For You
+            </h2>
+          </div>
+
+
+          <div
+            id="resultCount"
+            class="result-count"
+          >
+            0 results
+          </div>
+
+        </div>
+
+
+        <div
+          id="resultsGrid"
+          class="meal-results-grid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MODAL -->
+    <div
+      id="recipeModal"
+      class="recipe-modal hidden"
+    >
+
+      <div
+        id="recipeModalBackdrop"
+        class="recipe-modal-backdrop"
+      ></div>
+
+
+      <div class="recipe-modal-card">
+
+        <button
+          id="closeRecipeModal"
+          class="recipe-modal-close"
+        >
+          ×
+        </button>
+
+        <div id="recipeModalContent"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+      <div class="page-shell footer-inner">
+
+        <div>
+          <strong>CookLikeMe</strong>
+          <p>Cook with what you have.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="builder.html">Build</a>
+          <a href="saved.html">Saved</a>
+          <a href="grocery.html">Grocery</a>
+        </div>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <!-- MOBILE NAV -->
+  <nav class="mobile-nav">
+
+    <a href="index.html" class="mobile-nav-link">
+      <span>⌂</span>
+      <small>Home</small>
+    </a>
+
+    <a href="meals.html" class="mobile-nav-link active">
+      <span>⌕</span>
+      <small>Find</small>
+    </a>
+
+    <a href="builder.html" class="mobile-nav-link build-link">
+      <span>＋</span>
+      <small>Build</small>
+    </a>
+
+    <a href="saved.html" class="mobile-nav-link">
+      <span>♥</span>
+      <small>Saved</small>
+    </a>
+
+    <a href="grocery.html" class="mobile-nav-link">
+      <span>▣</span>
+      <small>Grocery</small>
+    </a>
+
+  </nav>
+
+
+  <!-- DATA MUST LOAD FIRST -->
+  <script src="data/ingredients.js"></script>
+  <script src="data/recipes.js"></script>
+
+  <!-- PAGE LOGIC -->
+  <script src="meals.js"></script>
+
+</body>
+</html>
