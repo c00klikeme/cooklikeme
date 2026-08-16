@@ -166,53 +166,18 @@ window.COOKLIKEME_INGREDIENTS = {
     ],
 
 
-    "Seasonings": [
-      "salt",
-      "sea salt",
-      "black pepper",
-      "white pepper",
-
-      "garlic powder",
-      "onion powder",
-
-      "paprika",
-      "smoked paprika",
-
-      "cajun seasoning",
-      "creole seasoning",
-
-      "old bay",
-
-      "seasoned salt",
-
-      "adobo",
-      "sazon",
-
-      "lemon pepper",
-
-      "italian seasoning",
-      "oregano",
-      "basil seasoning",
-      "parsley seasoning",
-      "rosemary seasoning",
-      "thyme seasoning",
-
-      "red pepper flakes",
-      "cayenne pepper",
-      "chili powder",
-      "cumin",
-
-      "curry powder",
-      "caribbean curry powder",
-
-      "jerk seasoning",
-      "allspice",
-
-      "brown sugar",
-
-      "cinnamon",
-      "nutmeg"
-    ],
+   "Flavor Boosters": [
+  "cajun seasoning",
+  "creole seasoning",
+  "old bay",
+  "adobo",
+  "sazon",
+  "lemon pepper",
+  "italian seasoning",
+  "curry powder",
+  "caribbean curry powder",
+  "jerk seasoning"
+],
 
 
     "Sauces & Flavor": [
