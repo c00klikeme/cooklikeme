@@ -36,6 +36,9 @@ const ingredientGroupsEl =
 const selectedIngredientsEl =
   document.getElementById("selectedIngredients");
 
+const selectedCount =
+  document.getElementById("selectedCount");
+
 const customIngredientInput =
   document.getElementById("customIngredientInput");
 
@@ -73,21 +76,42 @@ const closeRecipeModal =
   document.getElementById("closeRecipeModal");
 
 
+/* LIVE READOUT */
+
+const kitchenReadoutTitle =
+  document.getElementById("kitchenReadoutTitle");
+
+const comboStrength =
+  document.getElementById("comboStrength");
+
+const readoutProtein =
+  document.getElementById("readoutProtein");
+
+const readoutBase =
+  document.getElementById("readoutBase");
+
+const readoutSide =
+  document.getElementById("readoutSide");
+
+const readoutFlavor =
+  document.getElementById("readoutFlavor");
+
+const kitchenReadoutMessage =
+  document.getElementById("kitchenReadoutMessage");
+
+
 /* =====================================================
-   BASIC HELPERS
+   HELPERS
 ===================================================== */
 
 function normalize(value) {
-
   return String(value || "")
     .trim()
     .toLowerCase();
-
 }
 
 
 function titleCase(value) {
-
   return String(value || "")
     .split(" ")
     .map(
@@ -96,29 +120,19 @@ function titleCase(value) {
         word.slice(1)
     )
     .join(" ");
-
 }
 
 
 function saveSelectedIngredients() {
-
   localStorage.setItem(
     "cookLikeMe_selectedIngredients",
-    JSON.stringify(
-      selectedIngredients
-    )
+    JSON.stringify(selectedIngredients)
   );
-
 }
 
 
 /* =====================================================
    INGREDIENT FAMILIES
-
-   These let CookLikeMe understand that
-   "wings" and "chicken wings" are basically
-   the same main ingredient.
-
 ===================================================== */
 
 const INGREDIENT_FAMILIES = [
@@ -209,37 +223,24 @@ const INGREDIENT_FAMILIES = [
 ];
 
 
-function sameIngredientFamily(
-  first,
-  second
-) {
+function sameIngredientFamily(first, second) {
 
-  const a =
-    normalize(first);
-
-  const b =
-    normalize(second);
-
+  const a = normalize(first);
+  const b = normalize(second);
 
   if (a === b) {
-
     return true;
-
   }
-
 
   return INGREDIENT_FAMILIES.some(
     family =>
       family.includes(a) &&
       family.includes(b)
   );
-
 }
 
 
-function userHasIngredient(
-  ingredient
-) {
+function userHasIngredient(ingredient) {
 
   return selectedIngredients.some(
     selected =>
@@ -248,7 +249,6 @@ function userHasIngredient(
         ingredient
       )
   );
-
 }
 
 
@@ -264,30 +264,23 @@ const PROTEINS = new Set([
   "wings",
   "fried chicken",
   "ground chicken",
-
   "turkey",
   "ground turkey",
   "turkey sausage",
-
   "ground beef",
   "steak",
   "lean steak",
   "beef strips",
   "chuck roast",
   "short ribs",
-
   "pork chops",
   "pork tenderloin",
   "pulled pork",
-
   "bacon",
-
   "sausage",
   "italian sausage",
   "smoked sausage",
-
   "lamb chops",
-
   "shrimp",
   "salmon",
   "fish",
@@ -298,10 +291,8 @@ const PROTEINS = new Set([
   "crab",
   "crab meat",
   "scallops",
-
   "eggs",
   "egg whites",
-
   "tofu"
 ]);
 
@@ -314,7 +305,6 @@ const BASES = new Set([
   "jasmine rice",
   "basmati rice",
   "rice and peas",
-
   "pasta",
   "spaghetti",
   "penne",
@@ -324,7 +314,6 @@ const BASES = new Set([
   "macaroni",
   "egg noodles",
   "whole wheat pasta",
-
   "potatoes",
   "red potatoes",
   "sweet potato",
@@ -332,30 +321,24 @@ const BASES = new Set([
   "mashed potatoes",
   "fries",
   "sweet potato fries",
-
   "grits",
   "quinoa",
-
   "beans",
   "black beans",
   "kidney beans",
   "red beans",
   "chickpeas",
-
   "plantain",
-
   "bread",
   "white bread",
   "wheat bread",
   "brioche",
   "rolls",
-
   "tortilla",
   "flour tortilla",
   "corn tortilla",
   "whole wheat tortilla",
   "wrap",
-
   "oats"
 ]);
 
@@ -365,42 +348,31 @@ const SEASONINGS = new Set([
   "sea salt",
   "black pepper",
   "white pepper",
-
   "garlic powder",
   "onion powder",
-
   "paprika",
   "smoked paprika",
-
   "cajun seasoning",
   "creole seasoning",
-
   "old bay",
   "seasoned salt",
-
   "adobo",
   "sazon",
-
   "lemon pepper",
-
   "italian seasoning",
   "oregano",
   "basil seasoning",
   "parsley seasoning",
   "rosemary seasoning",
   "thyme seasoning",
-
   "red pepper flakes",
   "cayenne pepper",
   "chili powder",
   "cumin",
-
   "curry powder",
   "caribbean curry powder",
-
   "jerk seasoning",
   "allspice",
-
   "brown sugar",
   "cinnamon",
   "nutmeg"
@@ -411,31 +383,23 @@ const STRONG_FLAVORS = new Set([
   "gravy",
   "brown gravy",
   "chicken gravy",
-
   "hot sauce",
   "buffalo sauce",
   "bbq sauce",
-
   "soy sauce",
   "low sodium soy sauce",
   "teriyaki sauce",
   "worcestershire sauce",
-
   "alfredo sauce",
   "tomato sauce",
   "marinara",
-
   "garlic butter",
   "honey garlic sauce",
-
   "jerk sauce",
   "brown stew sauce",
-
   "coconut milk",
   "coconut cream",
-
   "ranch",
-
   "lime",
   "lime juice",
   "lemon",
@@ -443,52 +407,301 @@ const STRONG_FLAVORS = new Set([
 ]);
 
 
-function getIngredientRole(
-  ingredient
-) {
+function getIngredientRole(ingredient) {
 
   const clean =
     normalize(ingredient);
 
-
-  if (
-    PROTEINS.has(clean)
-  ) {
-
+  if (PROTEINS.has(clean)) {
     return "protein";
-
   }
 
-
-  if (
-    BASES.has(clean)
-  ) {
-
+  if (BASES.has(clean)) {
     return "base";
-
   }
 
-
-  if (
-    STRONG_FLAVORS.has(clean)
-  ) {
-
+  if (STRONG_FLAVORS.has(clean)) {
     return "flavor";
-
   }
 
-
-  if (
-    SEASONINGS.has(clean)
-  ) {
-
+  if (SEASONINGS.has(clean)) {
     return "seasoning";
-
   }
-
 
   return "support";
+}
 
+
+/* =====================================================
+   LIVE KITCHEN READOUT
+===================================================== */
+
+function getSelectedByRole(role) {
+
+  return selectedIngredients.filter(
+    ingredient =>
+      getIngredientRole(ingredient) === role
+  );
+}
+
+
+function getFirstSelectedByRole(role) {
+
+  const values =
+    getSelectedByRole(role);
+
+  return values[0] || "";
+}
+
+
+function getBestSide() {
+
+  const ignored =
+    new Set([
+      ...getSelectedByRole("protein"),
+      ...getSelectedByRole("base"),
+      ...getSelectedByRole("flavor"),
+      ...getSelectedByRole("seasoning")
+    ]);
+
+  return selectedIngredients.find(
+    item =>
+      !ignored.has(item)
+  ) || "";
+}
+
+
+function renderKitchenReadout() {
+
+  const protein =
+    getFirstSelectedByRole("protein");
+
+  const base =
+    getFirstSelectedByRole("base");
+
+  const flavor =
+    getFirstSelectedByRole("flavor");
+
+  const side =
+    getBestSide();
+
+  const seasonings =
+    getSelectedByRole("seasoning");
+
+
+  readoutProtein.textContent =
+    protein
+      ? titleCase(protein)
+      : "Not picked";
+
+
+  readoutBase.textContent =
+    base
+      ? titleCase(base)
+      : "Not picked";
+
+
+  readoutSide.textContent =
+    side
+      ? titleCase(side)
+      : "Not picked";
+
+
+  readoutFlavor.textContent =
+    flavor
+      ? titleCase(flavor)
+      : "Not picked";
+
+
+  selectedCount.textContent =
+    `${selectedIngredients.length} ${
+      selectedIngredients.length === 1
+        ? "ingredient"
+        : "ingredients"
+    }`;
+
+
+  comboStrength.className =
+    "combo-strength";
+
+
+  if (
+    selectedIngredients.length === 0
+  ) {
+
+    kitchenReadoutTitle.textContent =
+      "Start building your combo.";
+
+    comboStrength.textContent =
+      "Waiting";
+
+    comboStrength.classList.add(
+      "neutral"
+    );
+
+    kitchenReadoutMessage.textContent =
+      "Pick a protein or another main ingredient and CookLikeMe will start reading the plate.";
+
+    return;
+
+  }
+
+
+  if (
+    protein &&
+    base &&
+    flavor &&
+    side
+  ) {
+
+    kitchenReadoutTitle.textContent =
+      "This is looking like a real plate.";
+
+    comboStrength.textContent =
+      "Strong Combo";
+
+    comboStrength.classList.add(
+      "strong"
+    );
+
+    kitchenReadoutMessage.textContent =
+      `${titleCase(protein)} + ${titleCase(base)} + ${titleCase(side)} + ${titleCase(flavor)} gives CookLikeMe plenty to work with. Hit Find My Best Move.`;
+
+    return;
+
+  }
+
+
+  if (
+    protein &&
+    base &&
+    (flavor || side)
+  ) {
+
+    kitchenReadoutTitle.textContent =
+      "You’ve got the bones of a good meal.";
+
+    comboStrength.textContent =
+      "Good Combo";
+
+    comboStrength.classList.add(
+      "good"
+    );
+
+    kitchenReadoutMessage.textContent =
+      flavor
+        ? `${titleCase(protein)} and ${titleCase(base)} already make sense together, and ${titleCase(flavor)} gives the plate a direction.`
+        : `${titleCase(protein)} and ${titleCase(base)} give you a strong starting point. Add a sauce or seasoning if you want a more specific idea.`;
+
+    return;
+
+  }
+
+
+  if (
+    protein &&
+    (base || flavor)
+  ) {
+
+    kitchenReadoutTitle.textContent =
+      "CookLikeMe is starting to see the move.";
+
+    comboStrength.textContent =
+      "Getting There";
+
+    comboStrength.classList.add(
+      "good"
+    );
+
+    kitchenReadoutMessage.textContent =
+      base
+        ? `${titleCase(protein)} + ${titleCase(base)} works. Add a side, sauce, or more flavor and the recommendation will get sharper.`
+        : `${titleCase(protein)} with ${titleCase(flavor)} already gives the meal a direction. Add a base or side to round it out.`;
+
+    return;
+
+  }
+
+
+  if (protein) {
+
+    kitchenReadoutTitle.textContent =
+      `${titleCase(protein)} is the main move.`;
+
+    comboStrength.textContent =
+      "Needs More";
+
+    comboStrength.classList.add(
+      "weak"
+    );
+
+    kitchenReadoutMessage.textContent =
+      "Now add a base, side, sauce, or flavor so CookLikeMe can build something around it.";
+
+    return;
+
+  }
+
+
+  if (
+    base &&
+    !protein
+  ) {
+
+    kitchenReadoutTitle.textContent =
+      `${titleCase(base)} is a start.`;
+
+    comboStrength.textContent =
+      "Needs Protein";
+
+    comboStrength.classList.add(
+      "weak"
+    );
+
+    kitchenReadoutMessage.textContent =
+      "Add a protein or main ingredient so CookLikeMe knows what kind of plate you’re actually building.";
+
+    return;
+
+  }
+
+
+  if (
+    seasonings.length &&
+    !protein &&
+    !base
+  ) {
+
+    kitchenReadoutTitle.textContent =
+      "You’ve got flavor, but no meal yet.";
+
+    comboStrength.textContent =
+      "Needs Main Food";
+
+    comboStrength.classList.add(
+      "weak"
+    );
+
+    kitchenReadoutMessage.textContent =
+      "Seasonings help finish a meal, but pick a protein, base, fruit, or other main ingredient first.";
+
+    return;
+
+  }
+
+
+  kitchenReadoutTitle.textContent =
+    "Keep going.";
+
+  comboStrength.textContent =
+    "Needs More";
+
+  comboStrength.classList.add(
+    "weak"
+  );
+
+  kitchenReadoutMessage.textContent =
+    "Add another main ingredient and CookLikeMe will start connecting the dots.";
 }
 
 
@@ -503,10 +716,8 @@ function getModeFromURL() {
       window.location.search
     );
 
-
   const mode =
     params.get("mode");
-
 
   const validModes = [
     "regular",
@@ -516,46 +727,33 @@ function getModeFromURL() {
     "desserts"
   ];
 
-
   if (
     mode &&
     validModes.includes(mode)
   ) {
-
-    activeMode =
-      mode;
-
+    activeMode = mode;
   }
-
 }
 
 
-function setActiveMode(
-  mode
-) {
+function setActiveMode(mode) {
 
-  activeMode =
-    mode;
-
+  activeMode = mode;
 
   document
     .querySelectorAll(".mode-tab")
     .forEach(
       tab => {
-
         tab.classList.toggle(
           "active",
           tab.dataset.mode === mode
         );
-
       }
     );
 
-
   renderIngredientGroups();
-
   renderResultsEmpty();
-
+  renderKitchenReadout();
 }
 
 
@@ -565,64 +763,44 @@ function setActiveMode(
 
 function renderIngredientGroups() {
 
-  ingredientGroupsEl.innerHTML =
-    "";
-
+  ingredientGroupsEl.innerHTML = "";
 
   const groups =
     ingredientData[activeMode];
-
 
   Object.entries(groups)
     .forEach(
       ([groupName, ingredients]) => {
 
         const group =
-          document.createElement(
-            "section"
-          );
-
+          document.createElement("section");
 
         group.className =
           "ingredient-group";
 
-
         const title =
-          document.createElement(
-            "h3"
-          );
-
+          document.createElement("h3");
 
         title.textContent =
           groupName;
 
-
         const wrap =
-          document.createElement(
-            "div"
-          );
-
+          document.createElement("div");
 
         wrap.className =
           "ingredient-buttons";
-
 
         ingredients.forEach(
           ingredient => {
 
             const button =
-              document.createElement(
-                "button"
-              );
-
+              document.createElement("button");
 
             button.className =
               "ingredient-btn";
 
-
             button.textContent =
               ingredient;
-
 
             button.classList.toggle(
               "active",
@@ -631,18 +809,14 @@ function renderIngredientGroups() {
               )
             );
 
-
             button.addEventListener(
               "click",
               () => {
-
                 toggleIngredient(
                   ingredient
                 );
-
               }
             );
-
 
             wrap.appendChild(
               button
@@ -651,16 +825,8 @@ function renderIngredientGroups() {
           }
         );
 
-
-        group.appendChild(
-          title
-        );
-
-
-        group.appendChild(
-          wrap
-        );
-
+        group.appendChild(title);
+        group.appendChild(wrap);
 
         ingredientGroupsEl.appendChild(
           group
@@ -668,15 +834,12 @@ function renderIngredientGroups() {
 
       }
     );
-
 }
 
 
 function renderSelectedIngredients() {
 
-  selectedIngredientsEl.innerHTML =
-    "";
-
+  selectedIngredientsEl.innerHTML = "";
 
   if (
     selectedIngredients.length === 0
@@ -689,22 +852,16 @@ function renderSelectedIngredients() {
     `;
 
     return;
-
   }
-
 
   selectedIngredients.forEach(
     ingredient => {
 
       const tag =
-        document.createElement(
-          "span"
-        );
-
+        document.createElement("span");
 
       tag.className =
         "selected-tag";
-
 
       tag.innerHTML = `
         ${ingredient}
@@ -717,20 +874,16 @@ function renderSelectedIngredients() {
         </button>
       `;
 
-
       tag
         .querySelector("button")
         .addEventListener(
           "click",
           () => {
-
             removeIngredient(
               ingredient
             );
-
           }
         );
-
 
       selectedIngredientsEl.appendChild(
         tag
@@ -738,7 +891,18 @@ function renderSelectedIngredients() {
 
     }
   );
+}
 
+
+function refreshIngredientUI() {
+
+  saveSelectedIngredients();
+
+  renderIngredientGroups();
+
+  renderSelectedIngredients();
+
+  renderKitchenReadout();
 }
 
 
@@ -748,7 +912,6 @@ function toggleIngredient(
 
   const clean =
     normalize(ingredient);
-
 
   if (
     selectedIngredients.includes(clean)
@@ -764,19 +927,11 @@ function toggleIngredient(
 
   else {
 
-    selectedIngredients.push(
-      clean
-    );
+    selectedIngredients.push(clean);
 
   }
 
-
-  saveSelectedIngredients();
-
-  renderIngredientGroups();
-
-  renderSelectedIngredients();
-
+  refreshIngredientUI();
 }
 
 
@@ -791,13 +946,7 @@ function removeIngredient(
         normalize(ingredient)
     );
 
-
-  saveSelectedIngredients();
-
-  renderIngredientGroups();
-
-  renderSelectedIngredients();
-
+  refreshIngredientUI();
 }
 
 
@@ -808,35 +957,19 @@ function addCustomIngredient() {
       customIngredientInput.value
     );
 
-
   if (!value) {
-
     return;
-
   }
-
 
   if (
     !selectedIngredients.includes(value)
   ) {
-
-    selectedIngredients.push(
-      value
-    );
-
+    selectedIngredients.push(value);
   }
 
+  customIngredientInput.value = "";
 
-  customIngredientInput.value =
-    "";
-
-
-  saveSelectedIngredients();
-
-  renderSelectedIngredients();
-
-  renderIngredientGroups();
-
+  refreshIngredientUI();
 }
 
 
@@ -848,94 +981,53 @@ function getRecipesForMode() {
 
   return recipes.filter(
     recipe =>
-      recipe.mode ===
-      activeMode
+      recipe.mode === activeMode
   );
-
 }
 
 
 /* =====================================================
-   SMART MATCHING ENGINE
+   MATCHING
 ===================================================== */
 
-function scoreRecipe(
-  recipe
-) {
+function scoreRecipe(recipe) {
 
   const core =
     recipe.coreIngredients || [];
 
-
   const flavor =
     recipe.flavorIngredients || [];
-
 
   const optional =
     recipe.optionalIngredients || [];
 
 
-  let score =
-    0;
+  let score = 0;
 
+  let matchedProtein = [];
+  let missingProtein = [];
 
-  let matchedProtein =
-    [];
+  let matchedBase = [];
+  let missingBase = [];
 
+  let matchedFlavor = [];
+  let missingFlavor = [];
 
-  let missingProtein =
-    [];
+  let matchedSupport = [];
+  let missingSupport = [];
 
+  let matchedSeasoning = [];
+  let missingSeasoning = [];
 
-  let matchedBase =
-    [];
-
-
-  let missingBase =
-    [];
-
-
-  let matchedFlavor =
-    [];
-
-
-  let missingFlavor =
-    [];
-
-
-  let matchedSupport =
-    [];
-
-
-  let missingSupport =
-    [];
-
-
-  let matchedSeasoning =
-    [];
-
-
-  let missingSeasoning =
-    [];
-
-
-  /*
-    SCORE CORE INGREDIENTS
-  */
 
   core.forEach(
     ingredient => {
 
       const role =
-        getIngredientRole(
-          ingredient
-        );
-
+        getIngredientRole(ingredient);
 
       const matched =
-        userHasIngredient(
-          ingredient
-        );
+        userHasIngredient(ingredient);
 
 
       if (
@@ -943,28 +1035,13 @@ function scoreRecipe(
       ) {
 
         if (matched) {
-
           score += 35;
-
-          matchedProtein.push(
-            ingredient
-          );
-
+          matchedProtein.push(ingredient);
         }
 
         else {
-
-          /*
-            Missing the protein is a
-            MASSIVE problem.
-          */
-
           score -= 55;
-
-          missingProtein.push(
-            ingredient
-          );
-
+          missingProtein.push(ingredient);
         }
 
       }
@@ -975,23 +1052,13 @@ function scoreRecipe(
       ) {
 
         if (matched) {
-
           score += 18;
-
-          matchedBase.push(
-            ingredient
-          );
-
+          matchedBase.push(ingredient);
         }
 
         else {
-
           score -= 15;
-
-          missingBase.push(
-            ingredient
-          );
-
+          missingBase.push(ingredient);
         }
 
       }
@@ -1002,23 +1069,13 @@ function scoreRecipe(
       ) {
 
         if (matched) {
-
           score += 14;
-
-          matchedFlavor.push(
-            ingredient
-          );
-
+          matchedFlavor.push(ingredient);
         }
 
         else {
-
           score -= 5;
-
-          missingFlavor.push(
-            ingredient
-          );
-
+          missingFlavor.push(ingredient);
         }
 
       }
@@ -1029,27 +1086,13 @@ function scoreRecipe(
       ) {
 
         if (matched) {
-
           score += 3;
-
-          matchedSeasoning.push(
-            ingredient
-          );
-
+          matchedSeasoning.push(ingredient);
         }
 
         else {
-
-          /*
-            Missing seasoning barely hurts.
-          */
-
           score -= 0.5;
-
-          missingSeasoning.push(
-            ingredient
-          );
-
+          missingSeasoning.push(ingredient);
         }
 
       }
@@ -1058,23 +1101,13 @@ function scoreRecipe(
       else {
 
         if (matched) {
-
           score += 9;
-
-          matchedSupport.push(
-            ingredient
-          );
-
+          matchedSupport.push(ingredient);
         }
 
         else {
-
           score -= 4;
-
-          missingSupport.push(
-            ingredient
-          );
-
+          missingSupport.push(ingredient);
         }
 
       }
@@ -1083,23 +1116,14 @@ function scoreRecipe(
   );
 
 
-  /*
-    FLAVOR INGREDIENTS
-  */
-
   flavor.forEach(
     ingredient => {
 
       const role =
-        getIngredientRole(
-          ingredient
-        );
-
+        getIngredientRole(ingredient);
 
       const matched =
-        userHasIngredient(
-          ingredient
-        );
+        userHasIngredient(ingredient);
 
 
       if (
@@ -1107,21 +1131,12 @@ function scoreRecipe(
       ) {
 
         if (matched) {
-
           score += 2;
-
-          matchedSeasoning.push(
-            ingredient
-          );
-
+          matchedSeasoning.push(ingredient);
         }
 
         else {
-
-          missingSeasoning.push(
-            ingredient
-          );
-
+          missingSeasoning.push(ingredient);
         }
 
       }
@@ -1129,23 +1144,13 @@ function scoreRecipe(
       else {
 
         if (matched) {
-
           score += 8;
-
-          matchedFlavor.push(
-            ingredient
-          );
-
+          matchedFlavor.push(ingredient);
         }
 
         else {
-
           score -= 1;
-
-          missingFlavor.push(
-            ingredient
-          );
-
+          missingFlavor.push(ingredient);
         }
 
       }
@@ -1154,84 +1159,45 @@ function scoreRecipe(
   );
 
 
-  /*
-    OPTIONAL INGREDIENTS
-
-    Nice bonus, but they should
-    never determine Best Match.
-  */
-
   optional.forEach(
     ingredient => {
 
       if (
-        userHasIngredient(
-          ingredient
-        )
+        userHasIngredient(ingredient)
       ) {
-
         score += 2;
-
       }
 
+    }
   );
 
-
-  /*
-    EXTRA BONUS:
-    User has the right protein
-    AND right base.
-  */
 
   if (
     matchedProtein.length &&
     matchedBase.length
   ) {
-
     score += 20;
-
   }
 
-
-  /*
-    EXTRA BONUS:
-    Protein + strong flavor
-  */
 
   if (
     matchedProtein.length &&
     matchedFlavor.length
   ) {
-
     score += 12;
-
   }
 
-
-  /*
-    If recipe requires a protein
-    and user doesn't have anything
-    from that protein family,
-    it should almost never rank.
-  */
 
   if (
     missingProtein.length > 0 &&
     matchedProtein.length === 0
   ) {
-
     score -= 45;
-
   }
 
 
-  /*
-    DETERMINE MATCH QUALITY
-  */
-
   let label =
     "Possible Idea";
-
 
   let explanation =
     "Some of what you have can work here.";
@@ -1253,12 +1219,10 @@ function scoreRecipe(
     label =
       "🔥 Damn Good Match";
 
-
     explanation =
-      "You've got the important parts of this meal already.";
+      "You’ve got the important parts of this meal already.";
 
     score += 25;
-
   }
 
 
@@ -1270,12 +1234,10 @@ function scoreRecipe(
     label =
       "🔥 Strong Match";
 
-
     explanation =
       "Your protein and base are lined up. The rest is mostly flavor or extras.";
 
     score += 18;
-
   }
 
 
@@ -1287,12 +1249,10 @@ function scoreRecipe(
     label =
       "Almost There";
 
-
     explanation =
-      "You've got the main protein. You're close to making this work.";
+      "You’ve got the main protein. You’re close to making this work.";
 
     score += 8;
-
   }
 
 
@@ -1304,90 +1264,42 @@ function scoreRecipe(
     label =
       "Weak Match";
 
-
     explanation =
-      `You're missing the main protein: ${missingProtein.join(", ")}.`;
-
+      `You’re missing the main protein: ${missingProtein.join(", ")}.`;
   }
 
 
   return {
-
     score,
-
     label,
-
     explanation,
-
     matchedProtein,
     missingProtein,
-
     matchedBase,
     missingBase,
-
     matchedFlavor,
     missingFlavor,
-
     matchedSupport,
     missingSupport,
-
     matchedSeasoning,
     missingSeasoning
-
   };
-
 }
 
 
 /* =====================================================
-   SMART PLATE GENERATOR
-
-   This creates a meal idea directly
-   from ingredients when the user's
-   combination is better than a weak
-   database match.
-
+   SMART PLATE
 ===================================================== */
 
-function findSelectedByRole(
-  role
-) {
-
-  return selectedIngredients.filter(
-    ingredient =>
-      getIngredientRole(
-        ingredient
-      ) === role
-  );
-
-}
-
-
 function chooseBestProtein() {
-
-  const proteins =
-    findSelectedByRole(
-      "protein"
-    );
-
-
-  return proteins[0] || "";
-
+  return getFirstSelectedByRole("protein");
 }
 
 
 function chooseBestBase() {
 
   const bases =
-    findSelectedByRole(
-      "base"
-    );
-
-
-  /*
-    Prefer specific rice/pasta choices
-    over generic ones.
-  */
+    getSelectedByRole("base");
 
   const preferred =
     bases.find(
@@ -1396,63 +1308,24 @@ function chooseBestBase() {
         item !== "pasta"
     );
 
-
   return preferred ||
     bases[0] ||
     "";
-
 }
 
 
 function chooseBestFlavor() {
-
-  const flavors =
-    findSelectedByRole(
-      "flavor"
-    );
-
-
-  return flavors[0] || "";
-
+  return getFirstSelectedByRole("flavor");
 }
 
 
 function chooseBestSide() {
-
-  const ignored =
-    new Set([
-      ...findSelectedByRole(
-        "protein"
-      ),
-
-      ...findSelectedByRole(
-        "base"
-      ),
-
-      ...findSelectedByRole(
-        "flavor"
-      ),
-
-      ...findSelectedByRole(
-        "seasoning"
-      )
-    ]);
-
-
-  return selectedIngredients.find(
-    item =>
-      !ignored.has(item)
-  ) || "";
-
+  return getBestSide();
 }
 
 
 function getSelectedSeasonings() {
-
-  return findSelectedByRole(
-    "seasoning"
-  );
-
+  return getSelectedByRole("seasoning");
 }
 
 
@@ -1462,53 +1335,36 @@ function generateSmartPlate() {
     activeMode !== "regular" &&
     activeMode !== "healthy"
   ) {
-
     return null;
-
   }
-
 
   const protein =
     chooseBestProtein();
 
-
   const base =
     chooseBestBase();
-
 
   const flavor =
     chooseBestFlavor();
 
-
   const side =
     chooseBestSide();
-
 
   const seasonings =
     getSelectedSeasonings();
 
 
   if (!protein) {
-
     return null;
-
   }
 
-
-  /*
-    A Smart Plate becomes useful when
-    user has a protein plus at least
-    one direction-setting ingredient.
-  */
 
   if (
     !base &&
     !flavor &&
     !side
   ) {
-
     return null;
-
   }
 
 
@@ -1615,14 +1471,12 @@ function generateSmartPlate() {
 
     isSmartPlate:
       true
-
   };
-
 }
 
 
 /* =====================================================
-   SMART PLATE NAMING
+   SMART TITLES
 ===================================================== */
 
 function createSmartPlateTitle({
@@ -1635,18 +1489,12 @@ function createSmartPlateTitle({
   const p =
     titleCase(protein);
 
-
   const b =
     titleCase(base);
-
 
   const s =
     titleCase(side);
 
-
-  /*
-    Strong sauces define the name.
-  */
 
   if (
     flavor ===
@@ -1654,21 +1502,14 @@ function createSmartPlateTitle({
   ) {
 
     if (base && side) {
-
       return `Honey Garlic ${p} with ${b} & ${s}`;
-
     }
-
 
     if (base) {
-
       return `Honey Garlic ${p} with ${b}`;
-
     }
 
-
     return `Honey Garlic ${p}`;
-
   }
 
 
@@ -1680,7 +1521,6 @@ function createSmartPlateTitle({
     return base
       ? `Buffalo ${p} with ${b}`
       : `Buffalo ${p}`;
-
   }
 
 
@@ -1692,7 +1532,6 @@ function createSmartPlateTitle({
     return base
       ? `Garlic Butter ${p} with ${b}`
       : `Garlic Butter ${p}`;
-
   }
 
 
@@ -1704,7 +1543,6 @@ function createSmartPlateTitle({
     return base
       ? `Jerk ${p} with ${b}`
       : `Jerk ${p} Plate`;
-
   }
 
 
@@ -1714,7 +1552,6 @@ function createSmartPlateTitle({
   ) {
 
     return `Brown Stew ${p} Plate`;
-
   }
 
 
@@ -1724,7 +1561,6 @@ function createSmartPlateTitle({
   ) {
 
     return `Creamy ${p} Alfredo`;
-
   }
 
 
@@ -1736,13 +1572,8 @@ function createSmartPlateTitle({
     return base
       ? `BBQ ${p} with ${b}`
       : `BBQ ${p}`;
-
   }
 
-
-  /*
-    No defining sauce.
-  */
 
   if (
     base &&
@@ -1750,26 +1581,20 @@ function createSmartPlateTitle({
   ) {
 
     return `${p} with ${b} & ${s}`;
-
   }
 
 
   if (base) {
-
     return `${p} with ${b}`;
-
   }
 
 
   if (side) {
-
     return `${p} with ${s}`;
-
   }
 
 
   return `${p} Plate`;
-
 }
 
 
@@ -1799,26 +1624,20 @@ function createSmartPlateDescription({
 
 
   if (flavor) {
-
     description +=
       ` and finished with ${titleCase(flavor)}`;
-
   }
 
 
   if (base) {
-
     description +=
       `, served with ${titleCase(base)}`;
-
   }
 
 
   if (side) {
-
     description +=
       ` and ${titleCase(side)}`;
-
   }
 
 
@@ -1827,12 +1646,11 @@ function createSmartPlateDescription({
 
 
   return description;
-
 }
 
 
 /* =====================================================
-   SMART COOKING STEPS
+   SMART INSTRUCTIONS
 ===================================================== */
 
 function createSmartInstructions({
@@ -1843,8 +1661,7 @@ function createSmartInstructions({
   seasonings
 }) {
 
-  const steps =
-    [];
+  const steps = [];
 
 
   if (
@@ -1856,7 +1673,6 @@ function createSmartInstructions({
         .slice(0, 4)
         .join(", ")}.`
     );
-
   }
 
   else {
@@ -1864,7 +1680,6 @@ function createSmartInstructions({
     steps.push(
       `Season the ${protein} well with what you have.`
     );
-
   }
 
 
@@ -1878,7 +1693,6 @@ function createSmartInstructions({
     steps.push(
       `Add or toss the ${protein} with ${flavor} near the end so the flavor stays bold.`
     );
-
   }
 
 
@@ -1887,7 +1701,6 @@ function createSmartInstructions({
     steps.push(
       `Prepare the ${base} while the ${protein} cooks.`
     );
-
   }
 
 
@@ -1896,7 +1709,6 @@ function createSmartInstructions({
     steps.push(
       `Cook the ${side} separately and season it so it belongs on the same plate.`
     );
-
   }
 
 
@@ -1906,7 +1718,6 @@ function createSmartInstructions({
 
 
   return steps;
-
 }
 
 
@@ -1931,20 +1742,16 @@ function findMeals() {
       </div>
     `;
 
-
     resultsGrid.innerHTML = `
       <div class="finder-empty">
         Your ideas will show up here.
       </div>
     `;
 
-
     resultCount.textContent =
       "0 results";
 
-
     return;
-
   }
 
 
@@ -1958,11 +1765,6 @@ function findMeals() {
         })
       )
 
-      /*
-        Weak nonsense matches
-        don't deserve to show.
-      */
-
       .filter(
         item =>
           item.match.score > 0
@@ -1975,11 +1777,6 @@ function findMeals() {
       );
 
 
-  /*
-    Build a fresh CookLikeMe idea
-    from what the user actually has.
-  */
-
   currentSmartPlate =
     generateSmartPlate();
 
@@ -1987,16 +1784,6 @@ function findMeals() {
   const strongestRecipe =
     scored[0] || null;
 
-
-  /*
-    DECIDE BEST MATCH
-
-    Smart Plate wins when:
-    - recipe match is weak
-    - main protein is missing
-    - or custom combination is clearly
-      more relevant
-  */
 
   let useSmartPlate =
     false;
@@ -2007,29 +1794,20 @@ function findMeals() {
   ) {
 
     if (!strongestRecipe) {
-
-      useSmartPlate =
-        true;
-
+      useSmartPlate = true;
     }
 
     else if (
       strongestRecipe.match
         .missingProtein.length > 0
     ) {
-
-      useSmartPlate =
-        true;
-
+      useSmartPlate = true;
     }
 
     else if (
       strongestRecipe.match.score < 45
     ) {
-
-      useSmartPlate =
-        true;
-
+      useSmartPlate = true;
     }
 
   }
@@ -2042,7 +1820,6 @@ function findMeals() {
     renderSmartPlate(
       currentSmartPlate
     );
-
   }
 
   else if (
@@ -2052,18 +1829,16 @@ function findMeals() {
     renderBestMatch(
       strongestRecipe
     );
-
   }
 
   else {
 
     bestMatchEl.innerHTML = `
       <div class="finder-empty">
-        I don't have a strong enough idea yet.
+        I don’t have a strong enough idea yet.
         Add a protein, base, sauce, or side and try again.
       </div>
     `;
-
   }
 
 
@@ -2079,12 +1854,11 @@ function findMeals() {
     .scrollIntoView({
       behavior: "smooth"
     });
-
 }
 
 
 /* =====================================================
-   SMART PLATE DISPLAY
+   SMART RESULT
 ===================================================== */
 
 function renderSmartPlate(
@@ -2142,11 +1916,11 @@ function renderSmartPlate(
       <p class="missing-line">
 
         <strong>
-          Why it works:
+          Why this is the move:
         </strong>
 
         Your ingredients already make a real plate.
-        No need to force them into an unrelated recipe.
+        CookLikeMe isn’t forcing them into some random recipe.
 
       </p>
 
@@ -2181,11 +1955,9 @@ function renderSmartPlate(
     .addEventListener(
       "click",
       () => {
-
         openRecipeModal(
           plate
         );
-
       }
     );
 
@@ -2197,14 +1969,11 @@ function renderSmartPlate(
     .addEventListener(
       "click",
       () => {
-
         saveRecipe(
           plate
         );
-
       }
     );
-
 }
 
 
@@ -2229,8 +1998,7 @@ function renderBestMatch(
   ];
 
 
-  let missingText =
-    "";
+  let missingText = "";
 
 
   if (
@@ -2239,12 +2007,10 @@ function renderBestMatch(
   ) {
 
     missingText =
-      `Only missing seasoning/flavor extras: ${match.missingSeasoning
+      `Only missing seasoning or flavor extras: ${match.missingSeasoning
         .slice(0, 4)
         .join(", ")}.`;
-
   }
-
 
   else if (
     importantMissing.length > 0
@@ -2252,15 +2018,12 @@ function renderBestMatch(
 
     missingText =
       `Missing: ${importantMissing.join(", ")}`;
-
   }
-
 
   else {
 
     missingText =
-      "You've got what matters.";
-
+      "You’ve got what matters.";
   }
 
 
@@ -2322,7 +2085,7 @@ function renderBestMatch(
       <p class="missing-line">
 
         <strong>
-          Why it works:
+          Why this works:
         </strong>
 
         ${match.explanation}
@@ -2365,11 +2128,9 @@ function renderBestMatch(
     .addEventListener(
       "click",
       () => {
-
         openRecipeModal(
           recipe
         );
-
       }
     );
 
@@ -2381,33 +2142,24 @@ function renderBestMatch(
     .addEventListener(
       "click",
       () => {
-
         saveRecipe(
           recipe
         );
-
       }
     );
-
 }
 
 
 /* =====================================================
-   MORE RESULTS
+   OTHER RESULTS
 ===================================================== */
 
 function renderResults(
   scoredRecipes
 ) {
 
-  resultsGrid.innerHTML =
-    "";
+  resultsGrid.innerHTML = "";
 
-
-  /*
-    Only show actually respectable
-    suggestions.
-  */
 
   const visible =
     scoredRecipes
@@ -2437,12 +2189,11 @@ function renderResults(
     resultsGrid.innerHTML = `
       <div class="finder-empty">
         No other strong recipe matches yet.
-        Your CookLikeMe Pick above may still be the move.
+        The CookLikeMe Pick above may still be the move.
       </div>
     `;
 
     return;
-
   }
 
 
@@ -2471,8 +2222,7 @@ function renderResults(
       ];
 
 
-      let missingText =
-        "";
+      let missingText = "";
 
 
       if (
@@ -2480,15 +2230,13 @@ function renderResults(
       ) {
 
         missingText =
-          "You've got the important stuff.";
-
+          "You’ve got the important stuff.";
       }
 
       else {
 
         missingText =
           `Missing: ${importantMissing.join(", ")}`;
-
       }
 
 
@@ -2575,11 +2323,9 @@ function renderResults(
         .addEventListener(
           "click",
           () => {
-
             openRecipeModal(
               recipe
             );
-
           }
         );
 
@@ -2591,11 +2337,9 @@ function renderResults(
         .addEventListener(
           "click",
           () => {
-
             saveRecipe(
               recipe
             );
-
           }
         );
 
@@ -2606,7 +2350,6 @@ function renderResults(
 
     }
   );
-
 }
 
 
@@ -2619,15 +2362,15 @@ function renderResultsEmpty() {
   bestMatchEl.innerHTML = `
     <div class="finder-empty">
       Pick ingredients and hit
-      <strong>Find My Meals</strong>
-      to see what CookLikeMe comes up with.
+      <strong>Find My Best Move</strong>
+      when the combo starts looking good.
     </div>
   `;
 
 
   resultsGrid.innerHTML = `
     <div class="finder-empty">
-      Results for
+      Other ideas for
       <strong>${formatMode(activeMode)}</strong>
       will show here.
     </div>
@@ -2636,7 +2379,6 @@ function renderResultsEmpty() {
 
   resultCount.textContent =
     "0 results";
-
 }
 
 
@@ -2644,33 +2386,17 @@ function renderResultsEmpty() {
    MODE LABELS
 ===================================================== */
 
-function formatMode(
-  mode
-) {
+function formatMode(mode) {
 
   const labels = {
-
-    regular:
-      "Food",
-
-    healthy:
-      "Healthy",
-
-    shakes:
-      "Shakes & Smoothies",
-
-    drinks:
-      "Drinks",
-
-    desserts:
-      "Desserts"
-
+    regular: "Food",
+    healthy: "Healthy",
+    shakes: "Shakes & Smoothies",
+    drinks: "Drinks",
+    desserts: "Desserts"
   };
 
-
-  return labels[mode] ||
-    mode;
-
+  return labels[mode] || mode;
 }
 
 
@@ -2683,15 +2409,11 @@ function surpriseMe() {
   const modeRecipes =
     getRecipesForMode();
 
-
   if (
     modeRecipes.length === 0
   ) {
-
     return;
-
   }
-
 
   const recipe =
     modeRecipes[
@@ -2701,11 +2423,9 @@ function surpriseMe() {
       )
     ];
 
-
   openRecipeModal(
     recipe
   );
-
 }
 
 
@@ -2720,47 +2440,34 @@ function getSavedRecipes() {
       "cookLikeMe_favorites"
     )
   ) || [];
-
 }
 
 
-function saveRecipe(
-  recipe
-) {
+function saveRecipe(recipe) {
 
   const saved =
     getSavedRecipes();
 
-
   const alreadySaved =
     saved.some(
       item =>
-        item.id ===
-        recipe.id
+        item.id === recipe.id
     );
-
 
   if (
     !alreadySaved
   ) {
 
-    saved.push(
-      recipe
-    );
-
+    saved.push(recipe);
 
     localStorage.setItem(
       "cookLikeMe_favorites",
-      JSON.stringify(
-        saved
-      )
+      JSON.stringify(saved)
     );
-
 
     alert(
       `${recipe.title} saved.`
     );
-
   }
 
   else {
@@ -2768,21 +2475,15 @@ function saveRecipe(
     alert(
       `${recipe.title} is already saved.`
     );
-
   }
-
 }
 
 
 /* =====================================================
-   RECIPE MODAL
-
-   ALSO SUPPORTS NEW QUANTITY DATA
+   MODAL
 ===================================================== */
 
-function openRecipeModal(
-  recipe
-) {
+function openRecipeModal(recipe) {
 
   const quantityIngredients =
     Array.isArray(
@@ -2795,11 +2496,9 @@ function openRecipeModal(
   recipeModalContent.innerHTML = `
 
     <p class="modal-category">
-
       ${formatMode(recipe.mode)}
       •
       ${recipe.category}
-
     </p>
 
 
@@ -2825,7 +2524,6 @@ function openRecipeModal(
           : ""
       }
 
-
       ${
         recipe.cookTime
           ? `
@@ -2835,7 +2533,6 @@ function openRecipeModal(
           `
           : ""
       }
-
 
       ${
         recipe.servings
@@ -2847,11 +2544,9 @@ function openRecipeModal(
           : ""
       }
 
-
       <span class="meta-pill">
         ${recipe.difficulty}
       </span>
-
 
       ${
         Array.isArray(recipe.tags)
@@ -2984,27 +2679,17 @@ function openRecipeModal(
     .addEventListener(
       "click",
       () => {
-
-        saveRecipe(
-          recipe
-        );
-
+        saveRecipe(recipe);
       }
     );
-
 }
 
-
-/* =====================================================
-   CLOSE MODAL
-===================================================== */
 
 function closeModal() {
 
   recipeModal.classList.add(
     "hidden"
   );
-
 }
 
 
@@ -3021,18 +2706,13 @@ modeTabs.addEventListener(
         ".mode-tab"
       );
 
-
     if (!button) {
-
       return;
-
     }
-
 
     setActiveMode(
       button.dataset.mode
     );
-
   }
 );
 
@@ -3050,11 +2730,8 @@ customIngredientInput.addEventListener(
     if (
       event.key === "Enter"
     ) {
-
       addCustomIngredient();
-
     }
-
   }
 );
 
@@ -3063,9 +2740,7 @@ clearIngredientsBtn.addEventListener(
   "click",
   () => {
 
-    selectedIngredients =
-      [];
-
+    selectedIngredients = [];
 
     saveSelectedIngredients();
 
@@ -3073,8 +2748,9 @@ clearIngredientsBtn.addEventListener(
 
     renderIngredientGroups();
 
-    renderResultsEmpty();
+    renderKitchenReadout();
 
+    renderResultsEmpty();
   }
 );
 
@@ -3110,11 +2786,8 @@ document.addEventListener(
     if (
       event.key === "Escape"
     ) {
-
       closeModal();
-
     }
-
   }
 );
 
@@ -3127,16 +2800,15 @@ function init() {
 
   getModeFromURL();
 
-
   setActiveMode(
     activeMode
   );
-
 
   renderSelectedIngredients();
 
   renderIngredientGroups();
 
+  renderKitchenReadout();
 }
 
 
