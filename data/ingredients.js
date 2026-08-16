@@ -50,7 +50,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "eggs"
     ],
 
-
     "Carbs & Bases": [
       "rice",
       "white rice",
@@ -100,7 +99,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "wrap"
     ],
 
-
     "Dairy & Rich Stuff": [
       "butter",
       "milk",
@@ -120,7 +118,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
       "greek yogurt"
     ],
-
 
     "Veggies & Herbs": [
       "onion",
@@ -164,8 +161,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "rosemary",
       "basil"
     ],
-
-
 
     "Sauces & Flavor": [
       "gravy",
@@ -243,7 +238,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "tofu"
     ],
 
-
     "Healthy Bases": [
       "brown rice",
       "jasmine rice",
@@ -265,7 +259,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
       "cauliflower rice"
     ],
-
 
     "Veggies": [
       "broccoli",
@@ -301,7 +294,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "zucchini"
     ],
 
-
     "Healthy Flavor": [
       "garlic",
       "ginger",
@@ -324,9 +316,9 @@ window.COOKLIKEME_INGREDIENTS = {
       "low sodium soy sauce",
 
       "greek yogurt"
-    ],
+    ]
 
-
+  },
 
 
   /* =====================================================
@@ -347,7 +339,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "almond butter"
     ],
 
-
     "Fruit": [
       "banana",
       "strawberries",
@@ -363,7 +354,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "apple"
     ],
 
-
     "Liquid": [
       "milk",
       "almond milk",
@@ -378,7 +368,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "coffee",
       "cold brew"
     ],
-
 
     "Extras": [
       "peanut butter",
@@ -434,7 +423,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "cognac"
     ],
 
-
     "Mixers": [
       "pineapple juice",
       "orange juice",
@@ -460,7 +448,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "lemonade"
     ],
 
-
     "Fresh": [
       "lime",
       "lemon",
@@ -480,7 +467,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "watermelon"
     ],
 
-
     "Sweeteners": [
       "simple syrup",
       "honey",
@@ -491,7 +477,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
       "grenadine"
     ],
-
 
     "Mocktail Extras": [
       "club soda",
@@ -541,7 +526,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "cornstarch"
     ],
 
-
     "Chocolate": [
       "chocolate chips",
       "milk chocolate",
@@ -553,7 +537,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
       "chocolate syrup"
     ],
-
 
     "Fruit": [
       "banana",
@@ -572,7 +555,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "lemon"
     ],
 
-
     "Rich Stuff": [
       "cream cheese",
 
@@ -588,7 +570,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
       "sour cream"
     ],
-
 
     "Flavor": [
       "cinnamon",
@@ -606,7 +587,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
       "coconut"
     ],
-
 
     "Dessert Extras": [
       "graham crackers",
