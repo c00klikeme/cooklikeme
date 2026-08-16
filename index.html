@@ -3,235 +3,445 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>CookLikeMe</title>
-  <meta name="theme-color" content="#111111" />
+
   <meta
     name="description"
-    content="CookLikeMe helps you find real meals from what you already have, save favorites, build a plate, and make cooking feel easier."
+    content="CookLikeMe helps you figure out what to cook with what you already have."
   />
+
+  <meta name="theme-color" content="#0b0b0d" />
+
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="app-shell">
-    <header class="hero">
-      <div class="hero-glow"></div>
-      <div class="hero-content">
-        <p class="eyebrow">Real food • better ideas • no boring plates</p>
-        <h1>CookLikeMe</h1>
-        <p class="tagline">Cook with what you have.</p>
-        <p class="hero-copy">
-          Pick your ingredients, find meals that actually make sense, or build your own plate when you already know the kind of food you want.
-        </p>
 
-        <div class="hero-actions">
-          <button id="findMealsBtn" class="btn btn-primary">Find Meals</button>
-          <button id="surpriseBtn" class="btn btn-secondary">Surprise Me</button>
-          <button id="scrollToBuilderBtn" class="btn btn-ghost">Build My Plate</button>
+  <!-- DESKTOP HEADER -->
+  <header class="topbar">
+    <div class="nav-shell">
+
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CLM</div>
+
+        <div class="brand-text">
+          <strong>CookLikeMe</strong>
+          <span>Cook with what you have.</span>
         </div>
-      </div>
-    </header>
+      </a>
 
-    <main class="container">
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Step 1</p>
-            <h2>Pick Your Ingredients</h2>
-            <p class="section-subtext">
-              Tap what you already have, or add your own ingredient below.
-            </p>
-          </div>
-          <button id="clearIngredientsBtn" class="btn btn-small btn-ghost">Clear All</button>
-        </div>
+      <nav class="desktop-nav">
+        <a class="nav-link active" href="index.html">Home</a>
+        <a class="nav-link" href="meals.html">Find Meals</a>
+        <a class="nav-link" href="builder.html">Build My Plate</a>
+        <a class="nav-link" href="saved.html">Saved</a>
+        <a class="nav-link" href="grocery.html">Grocery</a>
+      </nav>
 
-        <div class="custom-ingredient-row">
-          <input
-            type="text"
-            id="customIngredientInput"
-            placeholder="Add your own ingredient..."
-          />
-          <button id="addCustomIngredientBtn" class="btn btn-secondary">Add</button>
-        </div>
-
-        <div id="selectedIngredients" class="selected-tags"></div>
-        <div id="ingredientGroups" class="ingredient-groups"></div>
-      </section>
-
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Step 2</p>
-            <h2>Choose a Lane</h2>
-            <p class="section-subtext">
-              Filter by meal type and craving so the app can narrow things down faster.
-            </p>
-          </div>
-        </div>
-
-        <div class="category-filters" id="categoryFilters">
-          <button class="filter-btn active" data-category="All">All</button>
-          <button class="filter-btn" data-category="Breakfast">Breakfast</button>
-          <button class="filter-btn" data-category="Lunch">Lunch</button>
-          <button class="filter-btn" data-category="Dinner">Dinner</button>
-          <button class="filter-btn" data-category="Quick">Quick</button>
-        </div>
-
-        <div class="section-head vibe-head">
-          <div>
-            <p class="section-kicker">Step 3</p>
-            <h2>Choose a Vibe</h2>
-            <p class="section-subtext">
-              Move by craving, not just ingredients.
-            </p>
-          </div>
-          <button id="clearVibesBtn" class="btn btn-small btn-ghost">Clear Vibe</button>
-        </div>
-
-        <div class="vibe-filters" id="vibeFilters">
-          <button class="vibe-btn active" data-vibe="All">All</button>
-          <button class="vibe-btn" data-vibe="Soul Food">Soul Food</button>
-          <button class="vibe-btn" data-vibe="Island">Island</button>
-          <button class="vibe-btn" data-vibe="Italian Night">Italian Night</button>
-          <button class="vibe-btn" data-vibe="Seafood">Seafood</button>
-          <button class="vibe-btn" data-vibe="Taco Night">Taco Night</button>
-          <button class="vibe-btn" data-vibe="Comfort">Comfort</button>
-          <button class="vibe-btn" data-vibe="Spicy">Spicy</button>
-          <button class="vibe-btn" data-vibe="Quick Bite">Quick Bite</button>
-        </div>
-      </section>
-
-      <section id="builderSection" class="panel plate-builder-panel">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Custom Plate</p>
-            <h2>Build My Plate</h2>
-            <p class="section-subtext">
-              Build a full plate with a protein, base, side, extras, seasoning, and sauce — then let CookLikeMe turn it into something worth making.
-            </p>
-          </div>
-        </div>
-
-        <div class="builder-grid">
-          <div class="builder-card">
-            <label for="builderProtein">Protein</label>
-            <select id="builderProtein"></select>
-          </div>
-
-          <div class="builder-card">
-            <label for="builderBase">Base</label>
-            <select id="builderBase"></select>
-          </div>
-
-          <div class="builder-card">
-            <label for="builderSide">Side</label>
-            <select id="builderSide"></select>
-          </div>
-
-          <div class="builder-card">
-            <label for="builderVeggies">Extras / Veggies</label>
-            <select id="builderVeggies" multiple></select>
-            <p class="builder-tip">Hold Ctrl or Command to pick more than one.</p>
-          </div>
-
-          <div class="builder-card">
-            <label for="builderSauce">Sauce / Flavor</label>
-            <select id="builderSauce"></select>
-          </div>
-
-          <div class="builder-card">
-            <label for="builderSeasoning">Seasoning</label>
-            <select id="builderSeasoning"></select>
-          </div>
-
-          <div class="builder-card">
-            <label for="builderVibe">Vibe</label>
-            <select id="builderVibe">
-              <option value="Comfort">Comfort</option>
-              <option value="Island">Island</option>
-              <option value="Italian Night">Italian Night</option>
-              <option value="Taco Night">Taco Night</option>
-              <option value="Seafood">Seafood</option>
-              <option value="Spicy">Spicy</option>
-              <option value="Quick Bite">Quick Bite</option>
-              <option value="Soul Food">Soul Food</option>
-            </select>
-          </div>
-
-          <div class="builder-card builder-actions-card">
-            <label>&nbsp;</label>
-            <button id="generatePlateBtn" class="btn btn-primary full-width">Generate My Plate</button>
-          </div>
-        </div>
-
-        <div id="plateResult" class="plate-result hidden"></div>
-      </section>
-
-      <section class="panel spotlight-panel">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Spotlight</p>
-            <h2>Best Match</h2>
-            <p class="section-subtext">
-              The strongest move based on what you picked.
-            </p>
-          </div>
-        </div>
-        <div id="bestMatchTonight"></div>
-      </section>
-
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Results</p>
-            <h2>Meals For You</h2>
-            <p class="section-subtext">
-              Exact matches, close calls, and strong fallback ideas.
-            </p>
-          </div>
-        </div>
-
-        <div id="results" class="results-grid"></div>
-      </section>
-
-      <section class="two-col">
-        <section class="panel">
-          <div class="section-head">
-            <div>
-              <p class="section-kicker">Saved</p>
-              <h2>Favorites</h2>
-            </div>
-          </div>
-          <div id="favoritesList" class="stack-list"></div>
-        </section>
-
-        <section class="panel">
-          <div class="section-head">
-            <div>
-              <p class="section-kicker">Shopping</p>
-              <h2>Grocery List</h2>
-            </div>
-            <button id="clearGroceryBtn" class="btn btn-small btn-ghost">Clear Grocery</button>
-          </div>
-          <div id="groceryList" class="grocery-groups"></div>
-        </section>
-      </section>
-
-      <footer class="app-footer">
-        <p>CookLikeMe is built for real meals, real cravings, and whatever you already got in the kitchen.</p>
-      </footer>
-    </main>
-  </div>
-
-  <div id="mealModal" class="modal hidden">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-content">
-      <button id="closeModalBtn" class="modal-close">&times;</button>
-      <div id="modalBody"></div>
     </div>
-  </div>
+  </header>
 
-  <script src="script.js"></script>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+
+      <div class="page-shell hero-layout">
+
+        <div class="hero-copy">
+
+          <p class="eyebrow">
+            REAL FOOD • REAL CRAVINGS • YOUR KITCHEN
+          </p>
+
+          <h1>
+            Stop wondering
+            <span>what to cook.</span>
+          </h1>
+
+          <p class="hero-description">
+            CookLikeMe helps you turn what you already have into meals
+            you actually want to eat.
+          </p>
+
+          <div class="hero-actions">
+            <a href="meals.html" class="btn btn-primary">
+              Find Me Something
+            </a>
+
+            <a href="builder.html" class="btn btn-secondary">
+              Build My Plate
+            </a>
+          </div>
+
+          <div class="hero-note">
+            <span class="hero-dot"></span>
+            No account needed to get started.
+          </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+          <div class="hero-card-label">
+            COOKLIKEME
+          </div>
+
+          <div class="hero-logo-placeholder">
+            <span>CookLike</span><strong>Me</strong>
+          </div>
+
+          <p>
+            Cook with what you have.
+          </p>
+
+          <div class="hero-mini-tags">
+            <span>Flavor First</span>
+            <span>Build Your Plate</span>
+            <span>Save What Hits</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CONTENT LANES -->
+    <section class="content-section">
+
+      <div class="page-shell">
+
+        <div class="section-heading">
+          <p class="section-kicker">START HERE</p>
+
+          <h2>What are we making?</h2>
+
+          <p>
+            Pick your lane. CookLikeMe will keep the experience focused
+            instead of throwing everything into one giant recipe pile.
+          </p>
+        </div>
+
+
+        <div class="lane-grid">
+
+          <!-- FOOD -->
+          <a href="meals.html?mode=regular" class="lane-card lane-food">
+
+            <div class="lane-icon">
+              🍽️
+            </div>
+
+            <div class="lane-content">
+              <span class="lane-label">REGULAR</span>
+
+              <h3>Food</h3>
+
+              <p>
+                Comfort food, island plates, pasta, seafood, tacos,
+                breakfast, quick meals and everything in between.
+              </p>
+
+              <span class="lane-link">
+                Find meals →
+              </span>
+            </div>
+
+          </a>
+
+
+          <!-- HEALTHY -->
+          <a href="meals.html?mode=healthy" class="lane-card lane-healthy">
+
+            <div class="lane-icon">
+              🥗
+            </div>
+
+            <div class="lane-content">
+              <span class="lane-label">HEALTHY</span>
+
+              <h3>Healthy</h3>
+
+              <p>
+                A completely separate lane for high-protein,
+                balanced and fitness-friendly meals that still taste good.
+              </p>
+
+              <span class="lane-link">
+                Eat better →
+              </span>
+            </div>
+
+          </a>
+
+
+          <!-- SHAKES -->
+          <a href="meals.html?mode=shakes" class="lane-card">
+
+            <div class="lane-icon">
+              🥤
+            </div>
+
+            <div class="lane-content">
+              <span class="lane-label">SHAKES & SMOOTHIES</span>
+
+              <h3>Blend Something</h3>
+
+              <p>
+                Protein shakes, breakfast smoothies, fruit blends
+                and post-workout options.
+              </p>
+
+              <span class="lane-link">
+                Start blending →
+              </span>
+            </div>
+
+          </a>
+
+
+          <!-- DRINKS -->
+          <a href="meals.html?mode=drinks" class="lane-card">
+
+            <div class="lane-icon">
+              🍹
+            </div>
+
+            <div class="lane-content">
+              <span class="lane-label">DRINKS</span>
+
+              <h3>Pour Something</h3>
+
+              <p>
+                Mocktails, non-alcoholic drinks and a separate
+                21+ cocktail collection.
+              </p>
+
+              <span class="lane-link">
+                See drinks →
+              </span>
+            </div>
+
+          </a>
+
+
+          <!-- DESSERT -->
+          <a href="meals.html?mode=desserts" class="lane-card">
+
+            <div class="lane-icon">
+              🍰
+            </div>
+
+            <div class="lane-content">
+              <span class="lane-label">DESSERTS</span>
+
+              <h3>Make Something Sweet</h3>
+
+              <p>
+                Cakes, puddings, cobblers, cookies, cheesecake
+                and quick desserts when dinner isn't the point.
+              </p>
+
+              <span class="lane-link">
+                Get something sweet →
+              </span>
+            </div>
+
+          </a>
+
+
+          <!-- BUILDER -->
+          <a href="builder.html" class="lane-card lane-builder">
+
+            <div class="lane-icon">
+              🔥
+            </div>
+
+            <div class="lane-content">
+              <span class="lane-label">CUSTOM</span>
+
+              <h3>Build My Plate</h3>
+
+              <p>
+                Pick your protein, base, side and flavor.
+                Build the meal your way.
+              </p>
+
+              <span class="lane-link">
+                Build a plate →
+              </span>
+            </div>
+
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHY COOKLIKEME -->
+    <section class="why-section">
+
+      <div class="page-shell">
+
+        <div class="section-heading compact">
+          <p class="section-kicker">WHY COOKLIKEME</p>
+
+          <h2>Food decisions shouldn't be this hard.</h2>
+        </div>
+
+
+        <div class="feature-grid">
+
+          <article class="feature-card">
+
+            <div class="feature-number">01</div>
+
+            <h3>Use what you already have</h3>
+
+            <p>
+              Pick ingredients from your kitchen and find meals
+              that actually make sense.
+            </p>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-number">02</div>
+
+            <h3>Move by craving</h3>
+
+            <p>
+              Regular food, healthy meals, drinks, shakes
+              and desserts each get their own lane.
+            </p>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="feature-number">03</div>
+
+            <h3>Make it yours</h3>
+
+            <p>
+              Build custom plates, save favorites and keep
+              grocery ideas ready for later.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta-section">
+
+      <div class="page-shell">
+
+        <div class="cta-card">
+
+          <div>
+            <p class="section-kicker">
+              READY?
+            </p>
+
+            <h2>
+              Let's figure out what you're eating.
+            </h2>
+
+            <p>
+              Start with your ingredients or build a plate from scratch.
+            </p>
+          </div>
+
+
+          <div class="cta-actions">
+
+            <a href="meals.html" class="btn btn-primary">
+              Find Meals
+            </a>
+
+            <a href="builder.html" class="btn btn-secondary">
+              Build My Plate
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+      <div class="page-shell footer-inner">
+
+        <div>
+          <strong>CookLikeMe</strong>
+          <p>Cook with what you have.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="meals.html">Find Meals</a>
+          <a href="builder.html">Build</a>
+          <a href="saved.html">Saved</a>
+          <a href="grocery.html">Grocery</a>
+        </div>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mobile-nav">
+
+    <a href="index.html" class="mobile-nav-link active">
+      <span>⌂</span>
+      <small>Home</small>
+    </a>
+
+    <a href="meals.html" class="mobile-nav-link">
+      <span>⌕</span>
+      <small>Find</small>
+    </a>
+
+    <a href="builder.html" class="mobile-nav-link build-link">
+      <span>＋</span>
+      <small>Build</small>
+    </a>
+
+    <a href="saved.html" class="mobile-nav-link">
+      <span>♥</span>
+      <small>Saved</small>
+    </a>
+
+    <a href="grocery.html" class="mobile-nav-link">
+      <span>▣</span>
+      <small>Grocery</small>
+    </a>
+
+  </nav>
+
 </body>
 </html>
