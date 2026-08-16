@@ -12,7 +12,6 @@ window.COOKLIKEME_INGREDIENTS = {
       "chicken thighs",
       "chicken wings",
       "fried chicken",
-      "wings",
       "ground chicken",
 
       "turkey",
@@ -206,7 +205,6 @@ window.COOKLIKEME_INGREDIENTS = {
 
   },
 
-
   /* =====================================================
      HEALTHY
   ====================================================== */
@@ -216,25 +214,19 @@ window.COOKLIKEME_INGREDIENTS = {
     "Lean Proteins": [
       "chicken breast",
       "ground chicken",
-
       "turkey",
       "ground turkey",
       "turkey sausage",
-
       "salmon",
       "shrimp",
       "tilapia",
       "cod",
       "tuna",
       "scallops",
-
       "lean steak",
-
       "eggs",
       "egg whites",
-
       "greek yogurt",
-
       "tofu"
     ],
 
@@ -242,21 +234,15 @@ window.COOKLIKEME_INGREDIENTS = {
       "brown rice",
       "jasmine rice",
       "basmati rice",
-
       "quinoa",
-
       "sweet potato",
       "roasted potatoes",
-
       "oats",
-
       "whole wheat tortilla",
       "whole wheat pasta",
-
       "black beans",
       "kidney beans",
       "chickpeas",
-
       "cauliflower rice"
     ],
 
@@ -264,62 +250,43 @@ window.COOKLIKEME_INGREDIENTS = {
       "broccoli",
       "spinach",
       "kale",
-
       "bell pepper",
       "red bell pepper",
       "green bell pepper",
-
       "onion",
       "red onion",
-
       "tomato",
       "cherry tomatoes",
-
       "cucumber",
-
       "lettuce",
       "cabbage",
-
       "green beans",
       "carrots",
-
       "mushrooms",
-
       "corn",
-
       "avocado",
-
       "cauliflower",
-
       "zucchini"
     ],
 
     "Healthy Flavor": [
       "garlic",
       "ginger",
-
       "lime",
       "lime juice",
-
       "lemon",
       "lemon juice",
-
       "cilantro",
       "scallion",
       "thyme",
       "parsley",
-
       "olive oil",
-
       "hot sauce",
-
       "low sodium soy sauce",
-
       "greek yogurt"
     ]
 
   },
-
 
   /* =====================================================
      SHAKES & SMOOTHIES
@@ -332,9 +299,7 @@ window.COOKLIKEME_INGREDIENTS = {
       "chocolate protein powder",
       "strawberry protein powder",
       "cookies and cream protein powder",
-
       "greek yogurt",
-
       "peanut butter",
       "almond butter"
     ],
@@ -346,11 +311,9 @@ window.COOKLIKEME_INGREDIENTS = {
       "raspberries",
       "blackberries",
       "mixed berries",
-
       "mango",
       "pineapple",
       "peach",
-
       "apple"
     ],
 
@@ -359,12 +322,9 @@ window.COOKLIKEME_INGREDIENTS = {
       "almond milk",
       "oat milk",
       "coconut milk",
-
       "water",
       "coconut water",
-
       "orange juice",
-
       "coffee",
       "cold brew"
     ],
@@ -372,31 +332,21 @@ window.COOKLIKEME_INGREDIENTS = {
     "Extras": [
       "peanut butter",
       "almond butter",
-
       "oats",
-
       "honey",
-
       "cinnamon",
-
       "cocoa powder",
-
       "coffee",
       "cold brew",
-
       "ice",
-
       "spinach",
       "kale",
-
       "chia seeds",
       "flax seeds",
-
       "vanilla extract"
     ]
 
   },
-
 
   /* =====================================================
      DRINKS
@@ -409,17 +359,12 @@ window.COOKLIKEME_INGREDIENTS = {
       "white rum",
       "dark rum",
       "spiced rum",
-
       "vodka",
-
       "tequila",
       "silver tequila",
-
       "whiskey",
       "bourbon",
-
       "gin",
-
       "cognac"
     ],
 
@@ -428,42 +373,28 @@ window.COOKLIKEME_INGREDIENTS = {
       "orange juice",
       "cranberry juice",
       "mango juice",
-
       "lime juice",
       "lemon juice",
-
       "club soda",
       "sparkling water",
-
       "ginger beer",
       "ginger ale",
-
       "cola",
-
       "coconut cream",
       "coconut water",
-
       "grenadine",
-
       "lemonade"
     ],
 
     "Fresh": [
       "lime",
       "lemon",
-
       "mint",
-
       "pineapple",
-
       "orange",
-
       "strawberries",
-
       "mango",
-
       "cucumber",
-
       "watermelon"
     ],
 
@@ -472,9 +403,7 @@ window.COOKLIKEME_INGREDIENTS = {
       "honey",
       "sugar",
       "brown sugar",
-
       "agave",
-
       "grenadine"
     ],
 
@@ -484,17 +413,14 @@ window.COOKLIKEME_INGREDIENTS = {
       "ginger beer",
       "ginger ale",
       "lemonade",
-
       "mint",
       "lime",
       "lemon",
-
       "pineapple juice",
       "cranberry juice"
     ]
 
   },
-
 
   /* =====================================================
      DESSERTS
@@ -505,24 +431,16 @@ window.COOKLIKEME_INGREDIENTS = {
     "Baking Basics": [
       "flour",
       "all purpose flour",
-
       "sugar",
       "brown sugar",
       "powdered sugar",
-
       "eggs",
-
       "butter",
-
       "milk",
-
       "vanilla extract",
-
       "baking powder",
       "baking soda",
-
       "salt",
-
       "cornstarch"
     ],
 
@@ -530,80 +448,53 @@ window.COOKLIKEME_INGREDIENTS = {
       "chocolate chips",
       "milk chocolate",
       "dark chocolate",
-
       "cocoa powder",
-
       "white chocolate",
-
       "chocolate syrup"
     ],
 
     "Fruit": [
       "banana",
-
       "apples",
-
       "peaches",
-
       "strawberries",
       "blueberries",
-
       "pineapple",
-
       "mango",
-
       "lemon"
     ],
 
     "Rich Stuff": [
       "cream cheese",
-
       "heavy cream",
-
       "condensed milk",
       "evaporated milk",
-
       "whipped cream",
-
       "vanilla ice cream",
       "chocolate ice cream",
-
       "sour cream"
     ],
 
     "Flavor": [
       "cinnamon",
       "nutmeg",
-
       "vanilla extract",
-
       "caramel sauce",
-
       "honey",
-
       "brown sugar",
-
       "lemon juice",
-
       "coconut"
     ],
 
     "Dessert Extras": [
       "graham crackers",
-
       "vanilla wafers",
-
       "oreo cookies",
-
       "pecans",
       "walnuts",
-
       "marshmallows",
-
       "sprinkles",
-
       "caramel sauce",
-
       "whipped cream"
     ]
 
