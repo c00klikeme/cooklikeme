@@ -166,19 +166,6 @@ window.COOKLIKEME_INGREDIENTS = {
     ],
 
 
-   "Flavor Boosters": [
-  "cajun seasoning",
-  "creole seasoning",
-  "old bay",
-  "adobo",
-  "sazon",
-  "lemon pepper",
-  "italian seasoning",
-  "curry powder",
-  "caribbean curry powder",
-  "jerk seasoning"
-],
-
 
     "Sauces & Flavor": [
       "gravy",
@@ -340,34 +327,6 @@ window.COOKLIKEME_INGREDIENTS = {
     ],
 
 
-    "Seasonings": [
-      "salt",
-      "black pepper",
-
-      "garlic powder",
-      "onion powder",
-
-      "paprika",
-      "smoked paprika",
-
-      "cajun seasoning",
-
-      "jerk seasoning",
-
-      "lemon pepper",
-
-      "curry powder",
-
-      "chili powder",
-      "cumin",
-
-      "oregano",
-      "italian seasoning",
-
-      "red pepper flakes"
-    ]
-
-  },
 
 
   /* =====================================================
