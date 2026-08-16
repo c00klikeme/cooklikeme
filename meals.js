@@ -1329,7 +1329,443 @@ function getSelectedSeasonings() {
 }
 
 
+/* =====================================================
+   COOKLIKEME SEASONING SUGGESTIONS
+===================================================== */
+
+function getSuggestedSeasonings({
+  protein,
+  flavor
+}) {
+
+  let suggestions = [];
+
+
+  /* CHICKEN */
+
+  if (
+    protein === "chicken" ||
+    protein === "chicken breast" ||
+    protein === "chicken thighs" ||
+    protein === "chicken wings" ||
+    protein === "wings" ||
+    protein === "fried chicken" ||
+    protein === "ground chicken"
+  ) {
+
+    suggestions = [
+      "garlic powder",
+      "onion powder",
+      "smoked paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  /* BEEF / STEAK */
+
+  else if (
+    protein === "steak" ||
+    protein === "lean steak" ||
+    protein === "beef strips" ||
+    protein === "ground beef" ||
+    protein === "beef"
+  ) {
+
+    suggestions = [
+      "garlic powder",
+      "black pepper",
+      "smoked paprika"
+    ];
+
+  }
+
+
+  /* PORK */
+
+  else if (
+    protein === "pork chops" ||
+    protein === "pork tenderloin" ||
+    protein === "pulled pork"
+  ) {
+
+    suggestions = [
+      "garlic powder",
+      "onion powder",
+      "seasoned salt",
+      "black pepper"
+    ];
+
+  }
+
+
+  /* SHRIMP */
+
+  else if (
+    protein === "shrimp"
+  ) {
+
+    suggestions = [
+      "garlic powder",
+      "paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  /* FISH */
+
+  else if (
+    protein === "salmon" ||
+    protein === "tilapia" ||
+    protein === "cod" ||
+    protein === "catfish" ||
+    protein === "fish"
+  ) {
+
+    suggestions = [
+      "garlic powder",
+      "paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  /* TURKEY */
+
+  else if (
+    protein === "turkey" ||
+    protein === "ground turkey" ||
+    protein === "turkey sausage"
+  ) {
+
+    suggestions = [
+      "garlic powder",
+      "onion powder",
+      "smoked paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  /* DEFAULT */
+
+  else {
+
+    suggestions = [
+      "garlic powder",
+      "onion powder",
+      "black pepper"
+    ];
+
+  }
+
+
+  /* =================================================
+     SAUCE / FLAVOR OVERRIDES
+  ================================================= */
+
+
+  if (
+    flavor === "honey garlic sauce"
+  ) {
+
+    return [
+      "garlic powder",
+      "onion powder",
+      "smoked paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  if (
+    flavor === "jerk sauce"
+  ) {
+
+    return [
+      "jerk seasoning",
+      "garlic powder",
+      "thyme",
+      "black pepper"
+    ];
+
+  }
+
+
+  if (
+    flavor === "brown stew sauce"
+  ) {
+
+    return [
+      "seasoned salt",
+      "garlic powder",
+      "onion powder",
+      "thyme"
+    ];
+
+  }
+
+
+  if (
+    flavor === "buffalo sauce"
+  ) {
+
+    return [
+      "garlic powder",
+      "onion powder",
+      "smoked paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  if (
+    flavor === "bbq sauce"
+  ) {
+
+    return [
+      "garlic powder",
+      "onion powder",
+      "smoked paprika",
+      "black pepper"
+    ];
+
+  }
+
+
+  if (
+    flavor === "garlic butter"
+  ) {
+
+    return [
+      "garlic powder",
+      "black pepper",
+      "paprika"
+    ];
+
+  }
+
+
+  if (
+    flavor === "alfredo sauce"
+  ) {
+
+    return [
+      "garlic powder",
+      "black pepper",
+      "italian seasoning"
+    ];
+
+  }
+
+
+  if (
+    flavor === "marinara" ||
+    flavor === "tomato sauce"
+  ) {
+
+    return [
+      "garlic powder",
+      "black pepper",
+      "italian seasoning"
+    ];
+
+  }
+
+
+  return suggestions;
+}
+
+
+/* =====================================================
+   GENERATE SMART PLATE
+===================================================== */
+
 function generateSmartPlate() {
+
+  if (
+    activeMode !== "regular" &&
+    activeMode !== "healthy"
+  ) {
+    return null;
+  }
+
+
+  const protein =
+    chooseBestProtein();
+
+  const base =
+    chooseBestBase();
+
+  const flavor =
+    chooseBestFlavor();
+
+  const side =
+    chooseBestSide();
+
+
+  /*
+    Special flavor boosters selected by
+    the user.
+  */
+
+  const selectedBoosters =
+    getSelectedSeasonings();
+
+
+  /*
+    CookLikeMe automatically recommends
+    everyday seasonings.
+  */
+
+  const suggestedSeasonings =
+    getSuggestedSeasonings({
+      protein,
+      flavor
+    });
+
+
+  /*
+    Combine both lists and remove
+    duplicates.
+  */
+
+  const seasonings = [
+    ...selectedBoosters,
+    ...suggestedSeasonings
+  ]
+    .filter(
+      (item, index, array) =>
+        array.indexOf(item) === index
+    );
+
+
+  if (!protein) {
+    return null;
+  }
+
+
+  if (
+    !base &&
+    !flavor &&
+    !side
+  ) {
+    return null;
+  }
+
+
+  const title =
+    createSmartPlateTitle({
+      protein,
+      base,
+      flavor,
+      side
+    });
+
+
+  const description =
+    createSmartPlateDescription({
+      protein,
+      base,
+      flavor,
+      side,
+      seasonings
+    });
+
+
+  const ingredients = [
+    protein,
+    base,
+    side,
+    flavor,
+    ...seasonings
+  ]
+    .filter(Boolean);
+
+
+  return {
+
+    id:
+      "smart-" +
+      Date.now(),
+
+    mode:
+      activeMode,
+
+    category:
+      "CookLikeMe Smart Plate",
+
+    tags: [
+      "Smart Plate",
+      activeMode === "healthy"
+        ? "Healthy"
+        : "CookLikeMe Pick"
+    ],
+
+    title,
+
+    time:
+      "25–40 min",
+
+    prepTime:
+      "10 min",
+
+    cookTime:
+      "20–30 min",
+
+    servings:
+      2,
+
+    difficulty:
+      "Easy",
+
+    ingredients:
+      ingredients.map(
+        item => ({
+          item,
+          amount:
+            "Use what you have"
+        })
+      ),
+
+    coreIngredients: [
+      protein,
+      base,
+      side
+    ]
+      .filter(Boolean),
+
+    flavorIngredients: [
+      flavor,
+      ...seasonings
+    ]
+      .filter(Boolean),
+
+    optionalIngredients:
+      [],
+
+    description,
+
+    instructions:
+      createSmartInstructions({
+        protein,
+        base,
+        flavor,
+        side,
+        seasonings
+      }),
+
+    isSmartPlate:
+      true
+  };
+}
 
   if (
     activeMode !== "regular" &&
@@ -1776,10 +2212,8 @@ function findMeals() {
           a.match.score
       );
 
-
   currentSmartPlate =
     generateSmartPlate();
-
 
   const strongestRecipe =
     scored[0] || null;
