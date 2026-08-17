@@ -11,86 +11,18 @@
   <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="cook.css" />
+  <link rel="stylesheet" href="recipe-images.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="nav-shell">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">CLM</div>
-        <div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div>
-      </a>
-      <nav class="desktop-nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="meals.html">Find Meals</a>
-        <a class="nav-link" href="builder.html">Build My Plate</a>
-        <a class="nav-link" href="saved.html">Saved</a>
-        <a class="nav-link" href="grocery.html">Grocery</a>
-      </nav>
-    </div>
-  </header>
+  <header class="topbar"><div class="nav-shell"><a class="brand" href="index.html"><div class="brand-mark">CLM</div><div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div></a><nav class="desktop-nav"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="meals.html">Find Meals</a><a class="nav-link" href="builder.html">Build My Plate</a><a class="nav-link" href="saved.html">Saved</a><a class="nav-link" href="grocery.html">Grocery</a></nav></div></header>
 
   <main class="cook-page">
-    <section class="cook-hero">
-      <div class="page-shell">
-        <p class="eyebrow">COOK MODE</p>
-        <h1 id="cookTitle">Ready when you are.</h1>
-        <p id="cookDescription" class="cook-intro"></p>
-        <div id="cookMeta" class="cook-meta"></div>
-      </div>
-    </section>
-
-    <section class="cook-section">
-      <div class="page-shell cook-grid">
-        <aside class="cook-sidebar">
-          <div class="cook-panel">
-            <p class="section-kicker">BEFORE YOU START</p>
-            <h2>What you need</h2>
-            <ul id="cookIngredients" class="cook-list"></ul>
-          </div>
-          <div id="seasoningPanel" class="cook-panel hidden">
-            <p class="section-kicker">MAKE IT HIT 🔥</p>
-            <h2>Seasoning suggestion</h2>
-            <p id="cookSeasonings" class="cook-copy"></p>
-            <p class="cook-note">Use your own usual blend if you prefer. This is just CookLikeMe’s direction.</p>
-          </div>
-        </aside>
-
-        <section class="cook-main">
-          <div class="cook-progress-wrap">
-            <div class="cook-progress-top"><span id="stepCounter">Step 1</span><span id="progressText">0% done</span></div>
-            <div class="cook-progress-track"><div id="cookProgress" class="cook-progress-bar"></div></div>
-          </div>
-
-          <article class="cook-step-card">
-            <p class="section-kicker">RIGHT NOW</p>
-            <h2 id="currentStepTitle">Step 1</h2>
-            <p id="currentStepText" class="current-step-text"></p>
-          </article>
-
-          <div class="cook-controls">
-            <button id="prevStepBtn" class="cook-btn">← Back</button>
-            <button id="doneStepBtn" class="cook-btn primary">Done with this step</button>
-            <button id="nextStepBtn" class="cook-btn">Next →</button>
-          </div>
-
-          <div id="finishCard" class="finish-card hidden">
-            <p class="section-kicker">THAT’S IT</p>
-            <h2>Plate it up.</h2>
-            <p>You made it through the whole recipe. Taste it, adjust anything you want, and eat while it’s hot.</p>
-            <div class="finish-actions"><a href="saved.html" class="cook-btn primary">Go to Saved</a><a href="meals.html" class="cook-btn">Find Another Meal</a></div>
-          </div>
-
-          <div class="all-steps-wrap">
-            <p class="section-kicker">FULL RUNDOWN</p>
-            <h2>All steps</h2>
-            <ol id="allSteps" class="all-steps"></ol>
-          </div>
-        </section>
-      </div>
-    </section>
+    <section class="cook-hero"><div class="page-shell"><p class="eyebrow">COOK MODE</p><h1 id="cookTitle">Ready when you are.</h1><p id="cookDescription" class="cook-intro"></p><div id="cookMeta" class="cook-meta"></div></div></section>
+    <section class="cook-section"><div class="page-shell cook-grid"><aside class="cook-sidebar"><div class="cook-panel"><p class="section-kicker">BEFORE YOU START</p><h2>What you need</h2><ul id="cookIngredients" class="cook-list"></ul></div><div id="seasoningPanel" class="cook-panel hidden"><p class="section-kicker">MAKE IT HIT 🔥</p><h2>Seasoning suggestion</h2><p id="cookSeasonings" class="cook-copy"></p><p class="cook-note">Use your own usual blend if you prefer. This is just CookLikeMe’s direction.</p></div></aside><section class="cook-main"><div class="cook-progress-wrap"><div class="cook-progress-top"><span id="stepCounter">Step 1</span><span id="progressText">0% done</span></div><div class="cook-progress-track"><div id="cookProgress" class="cook-progress-bar"></div></div></div><article class="cook-step-card"><p class="section-kicker">RIGHT NOW</p><h2 id="currentStepTitle">Step 1</h2><p id="currentStepText" class="current-step-text"></p></article><div class="cook-controls"><button id="prevStepBtn" class="cook-btn">← Back</button><button id="doneStepBtn" class="cook-btn primary">Done with this step</button><button id="nextStepBtn" class="cook-btn">Next →</button></div><div id="finishCard" class="finish-card hidden"><p class="section-kicker">THAT’S IT</p><h2>Plate it up.</h2><p>You made it through the whole recipe. Taste it, adjust anything you want, and eat while it’s hot.</p><div class="finish-actions"><a href="saved.html" class="cook-btn primary">Go to Saved</a><a href="meals.html" class="cook-btn">Find Another Meal</a></div></div><div class="all-steps-wrap"><p class="section-kicker">FULL RUNDOWN</p><h2>All steps</h2><ol id="allSteps" class="all-steps"></ol></div></section></div></section>
   </main>
 
   <script src="pwa.js"></script>
   <script src="cook.js"></script>
+  <script src="recipe-images.js"></script>
 </body>
 </html>
