@@ -10,84 +10,18 @@
   <link rel="icon" type="image/png" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="saved.css" />
+  <link rel="stylesheet" href="recipe-images.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="nav-shell">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">CLM</div>
-        <div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div>
-      </a>
-      <nav class="desktop-nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="meals.html">Find Meals</a>
-        <a class="nav-link" href="builder.html">Build My Plate</a>
-        <a class="nav-link active" href="saved.html">Saved</a>
-        <a class="nav-link" href="grocery.html">Grocery</a>
-      </nav>
-    </div>
-  </header>
-
+  <header class="topbar"><div class="nav-shell"><a class="brand" href="index.html"><div class="brand-mark">CLM</div><div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div></a><nav class="desktop-nav"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="meals.html">Find Meals</a><a class="nav-link" href="builder.html">Build My Plate</a><a class="nav-link active" href="saved.html">Saved</a><a class="nav-link" href="grocery.html">Grocery</a></nav></div></header>
   <main>
-    <section class="saved-hero">
-      <div class="page-shell">
-        <p class="eyebrow">YOUR PERSONAL COOKBOOK</p>
-        <h1>Saved</h1>
-        <p class="saved-intro">The meals worth coming back to. Search them, cook them again, or send the food you need straight to Grocery.</p>
-      </div>
-    </section>
-
-    <section class="saved-section">
-      <div class="page-shell">
-        <div class="saved-search-row">
-          <div class="saved-search-wrap">
-            <span class="saved-search-icon">⌕</span>
-            <input id="savedSearchInput" class="saved-search-input" type="search" placeholder="Search saved meals..." autocomplete="off" />
-          </div>
-          <span id="savedCount" class="saved-count">0 saved</span>
-        </div>
-
-        <div class="saved-toolbar">
-          <div class="saved-filter-tabs">
-            <button class="saved-filter-btn active" data-filter="all">All</button>
-            <button class="saved-filter-btn" data-filter="regular">Food</button>
-            <button class="saved-filter-btn" data-filter="healthy">Healthy</button>
-            <button class="saved-filter-btn" data-filter="shakes">Shakes</button>
-            <button class="saved-filter-btn" data-filter="drinks">Drinks</button>
-            <button class="saved-filter-btn" data-filter="desserts">Desserts</button>
-            <button class="saved-filter-btn" data-filter="custom">Custom Plates</button>
-          </div>
-          <button id="clearSavedBtn" class="clear-saved-btn">Clear Saved</button>
-        </div>
-
-        <div id="savedGrid" class="saved-grid"></div>
-      </div>
-    </section>
-
-    <div id="savedModal" class="saved-modal hidden">
-      <div id="savedModalBackdrop" class="saved-modal-backdrop"></div>
-      <div class="saved-modal-card">
-        <button id="closeSavedModal" class="saved-modal-close">×</button>
-        <div id="savedModalContent"></div>
-      </div>
-    </div>
-
-    <footer class="site-footer">
-      <div class="page-shell footer-inner">
-        <div><strong>CookLikeMe</strong><p>Cook with what you have.</p></div>
-        <div class="footer-links"><a href="index.html">Home</a><a href="meals.html">Find Meals</a><a href="builder.html">Build</a><a href="grocery.html">Grocery</a></div>
-      </div>
-    </footer>
+    <section class="saved-hero"><div class="page-shell"><p class="eyebrow">YOUR PERSONAL COOKBOOK</p><h1>Saved</h1><p class="saved-intro">The meals worth coming back to. Search them, cook them again, or send the food you need straight to Grocery.</p></div></section>
+    <section class="saved-section"><div class="page-shell"><div class="saved-search-row"><div class="saved-search-wrap"><span class="saved-search-icon">⌕</span><input id="savedSearchInput" class="saved-search-input" type="search" placeholder="Search saved meals..." autocomplete="off" /></div><span id="savedCount" class="saved-count">0 saved</span></div><div class="saved-toolbar"><div class="saved-filter-tabs"><button class="saved-filter-btn active" data-filter="all">All</button><button class="saved-filter-btn" data-filter="regular">Food</button><button class="saved-filter-btn" data-filter="healthy">Healthy</button><button class="saved-filter-btn" data-filter="shakes">Shakes</button><button class="saved-filter-btn" data-filter="drinks">Drinks</button><button class="saved-filter-btn" data-filter="desserts">Desserts</button><button class="saved-filter-btn" data-filter="custom">Custom Plates</button></div><button id="clearSavedBtn" class="clear-saved-btn">Clear Saved</button></div><div id="savedGrid" class="saved-grid"></div></div></section>
+    <div id="savedModal" class="saved-modal hidden"><div id="savedModalBackdrop" class="saved-modal-backdrop"></div><div class="saved-modal-card"><button id="closeSavedModal" class="saved-modal-close">×</button><div id="savedModalContent"></div></div></div>
+    <footer class="site-footer"><div class="page-shell footer-inner"><div><strong>CookLikeMe</strong><p>Cook with what you have.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="meals.html">Find Meals</a><a href="builder.html">Build</a><a href="grocery.html">Grocery</a></div></div></footer>
   </main>
-
-  <nav class="mobile-nav">
-    <a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a>
-    <a href="meals.html" class="mobile-nav-link"><span>⌕</span><small>Find</small></a>
-    <a href="builder.html" class="mobile-nav-link build-link"><span>＋</span><small>Build</small></a>
-    <a href="saved.html" class="mobile-nav-link active"><span>♥</span><small>Saved</small></a>
-    <a href="grocery.html" class="mobile-nav-link"><span>▣</span><small>Grocery</small></a>
-  </nav>
-
+  <nav class="mobile-nav"><a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a><a href="meals.html" class="mobile-nav-link"><span>⌕</span><small>Find</small></a><a href="builder.html" class="mobile-nav-link build-link"><span>＋</span><small>Build</small></a><a href="saved.html" class="mobile-nav-link active"><span>♥</span><small>Saved</small></a><a href="grocery.html" class="mobile-nav-link"><span>▣</span><small>Grocery</small></a></nav>
   <script src="saved.js"></script>
+  <script src="recipe-images.js"></script>
 </body>
 </html>
