@@ -10,72 +10,17 @@
   <link rel="icon" type="image/png" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="meals.css" />
+  <link rel="stylesheet" href="recipe-images.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="nav-shell">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">CLM</div>
-        <div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div>
-      </a>
-      <nav class="desktop-nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link active" href="meals.html">Find Meals</a>
-        <a class="nav-link" href="builder.html">Build My Plate</a>
-        <a class="nav-link" href="saved.html">Saved</a>
-        <a class="nav-link" href="grocery.html">Grocery</a>
-      </nav>
-    </div>
-  </header>
+  <header class="topbar"><div class="nav-shell"><a class="brand" href="index.html"><div class="brand-mark">CLM</div><div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div></a><nav class="desktop-nav"><a class="nav-link" href="index.html">Home</a><a class="nav-link active" href="meals.html">Find Meals</a><a class="nav-link" href="builder.html">Build My Plate</a><a class="nav-link" href="saved.html">Saved</a><a class="nav-link" href="grocery.html">Grocery</a></nav></div></header>
 
   <main>
-    <section class="finder-hero">
-      <div class="page-shell">
-        <p class="eyebrow">FIND SOMETHING GOOD</p>
-        <h1>What do you have?</h1>
-        <p class="finder-intro">Pick the main food you already have. CookLikeMe will match it with meal ideas that actually make sense.</p>
-      </div>
-    </section>
+    <section class="finder-hero"><div class="page-shell"><p class="eyebrow">FIND SOMETHING GOOD</p><h1>What do you have?</h1><p class="finder-intro">Pick the main food you already have. CookLikeMe will match it with meal ideas that actually make sense.</p></div></section>
 
-    <section class="finder-section">
-      <div class="page-shell">
-        <div class="finder-block">
-          <div class="finder-block-heading"><div><p class="section-kicker">CHOOSE YOUR LANE</p><h2>What are we making?</h2></div></div>
-          <div class="mode-tabs" id="modeTabs">
-            <button class="mode-tab active" data-mode="regular"><span class="mode-emoji">🍽️</span><span><strong>Food</strong><small>Regular meals</small></span></button>
-            <button class="mode-tab" data-mode="healthy"><span class="mode-emoji">🥗</span><span><strong>Healthy</strong><small>Separate healthy lane</small></span></button>
-            <button class="mode-tab" data-mode="shakes"><span class="mode-emoji">🥤</span><span><strong>Shakes</strong><small>Protein & smoothies</small></span></button>
-            <button class="mode-tab" data-mode="drinks"><span class="mode-emoji">🍹</span><span><strong>Drinks</strong><small>Mocktails & cocktails</small></span></button>
-            <button class="mode-tab" data-mode="desserts"><span class="mode-emoji">🍰</span><span><strong>Desserts</strong><small>Something sweet</small></span></button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="finder-section"><div class="page-shell"><div class="finder-block"><div class="finder-block-heading"><div><p class="section-kicker">CHOOSE YOUR LANE</p><h2>What are we making?</h2></div></div><div class="mode-tabs" id="modeTabs"><button class="mode-tab active" data-mode="regular"><span class="mode-emoji">🍽️</span><span><strong>Food</strong><small>Regular meals</small></span></button><button class="mode-tab" data-mode="healthy"><span class="mode-emoji">🥗</span><span><strong>Healthy</strong><small>Separate healthy lane</small></span></button><button class="mode-tab" data-mode="shakes"><span class="mode-emoji">🥤</span><span><strong>Shakes</strong><small>Protein & smoothies</small></span></button><button class="mode-tab" data-mode="drinks"><span class="mode-emoji">🍹</span><span><strong>Drinks</strong><small>Mocktails & cocktails</small></span></button><button class="mode-tab" data-mode="desserts"><span class="mode-emoji">🍰</span><span><strong>Desserts</strong><small>Something sweet</small></span></button></div></div></div></section>
 
-    <section class="finder-section ingredients-section">
-      <div class="page-shell">
-        <div class="finder-block">
-          <div class="finder-block-heading">
-            <div><p class="section-kicker">YOUR KITCHEN</p><h2>Pick your ingredients</h2><p>Choose the main ingredients you actually have. CookLikeMe will handle normal seasoning recommendations inside the recipe.</p></div>
-            <button id="clearIngredientsBtn" class="finder-small-btn">Clear All</button>
-          </div>
-          <div class="custom-ingredient-row"><input type="text" id="customIngredientInput" placeholder="Don’t see something? Add it here..." autocomplete="off" /><button id="addCustomIngredientBtn" class="finder-add-btn">Add</button></div>
-          <div class="selected-area"><div class="selected-heading-row"><p class="selected-label">SELECTED</p><span id="selectedCount" class="selected-count">0 ingredients</span></div><div id="selectedIngredients" class="selected-tags"></div></div>
-          <div id="ingredientGroups" class="ingredient-groups"></div>
-          <section id="kitchenReadout" class="kitchen-readout">
-            <div class="kitchen-readout-top"><div><p class="section-kicker">COOKLIKEME SEES</p><h3 id="kitchenReadoutTitle">Start building your combo.</h3></div><span id="comboStrength" class="combo-strength neutral">Waiting</span></div>
-            <div id="kitchenRoleGrid" class="kitchen-role-grid">
-              <div class="kitchen-role"><span class="role-icon">🔥</span><div><small>PROTEIN</small><strong id="readoutProtein">Not picked</strong></div></div>
-              <div class="kitchen-role"><span class="role-icon">🍚</span><div><small>BASE</small><strong id="readoutBase">Not picked</strong></div></div>
-              <div class="kitchen-role"><span class="role-icon">🥬</span><div><small>SIDE / EXTRA</small><strong id="readoutSide">Not picked</strong></div></div>
-              <div class="kitchen-role"><span class="role-icon">🍯</span><div><small>FLAVOR</small><strong id="readoutFlavor">Not picked</strong></div></div>
-            </div>
-            <p id="kitchenReadoutMessage" class="kitchen-readout-message">Pick a protein or another main ingredient and CookLikeMe will start reading the plate.</p>
-          </section>
-          <div class="find-action-wrap"><button id="findMealsBtn" class="big-find-btn">Find My Best Move</button><button id="surpriseBtn" class="surprise-btn">Surprise Me</button></div>
-        </div>
-      </div>
-    </section>
+    <section class="finder-section ingredients-section"><div class="page-shell"><div class="finder-block"><div class="finder-block-heading"><div><p class="section-kicker">YOUR KITCHEN</p><h2>Pick your ingredients</h2><p>Choose the main ingredients you actually have. CookLikeMe will handle normal seasoning recommendations inside the recipe.</p></div><button id="clearIngredientsBtn" class="finder-small-btn">Clear All</button></div><div class="custom-ingredient-row"><input type="text" id="customIngredientInput" placeholder="Don’t see something? Add it here..." autocomplete="off" /><button id="addCustomIngredientBtn" class="finder-add-btn">Add</button></div><div class="selected-area"><div class="selected-heading-row"><p class="selected-label">SELECTED</p><span id="selectedCount" class="selected-count">0 ingredients</span></div><div id="selectedIngredients" class="selected-tags"></div></div><div id="ingredientGroups" class="ingredient-groups"></div><section id="kitchenReadout" class="kitchen-readout"><div class="kitchen-readout-top"><div><p class="section-kicker">COOKLIKEME SEES</p><h3 id="kitchenReadoutTitle">Start building your combo.</h3></div><span id="comboStrength" class="combo-strength neutral">Waiting</span></div><div id="kitchenRoleGrid" class="kitchen-role-grid"><div class="kitchen-role"><span class="role-icon">🔥</span><div><small>PROTEIN</small><strong id="readoutProtein">Not picked</strong></div></div><div class="kitchen-role"><span class="role-icon">🍚</span><div><small>BASE</small><strong id="readoutBase">Not picked</strong></div></div><div class="kitchen-role"><span class="role-icon">🥬</span><div><small>SIDE / EXTRA</small><strong id="readoutSide">Not picked</strong></div></div><div class="kitchen-role"><span class="role-icon">🍯</span><div><small>FLAVOR</small><strong id="readoutFlavor">Not picked</strong></div></div></div><p id="kitchenReadoutMessage" class="kitchen-readout-message">Pick a protein or another main ingredient and CookLikeMe will start reading the plate.</p></section><div class="find-action-wrap"><button id="findMealsBtn" class="big-find-btn">Find My Best Move</button><button id="surpriseBtn" class="surprise-btn">Surprise Me</button></div></div></div></section>
 
     <section id="resultsSection" class="finder-section"><div class="page-shell"><div class="section-heading compact"><p class="section-kicker">YOUR BEST MOVE</p><h2>What You Should Make</h2><p>CookLikeMe’s strongest idea based on what you actually selected.</p></div><div id="bestMatch"></div></div></section>
     <section class="finder-section results-section"><div class="page-shell"><div class="results-heading"><div><p class="section-kicker">MORE IDEAS</p><h2>Other Good Moves</h2></div><div id="resultCount" class="result-count">0 results</div></div><div id="resultsGrid" class="meal-results-grid"></div></div></section>
@@ -83,14 +28,13 @@
     <footer class="site-footer"><div class="page-shell footer-inner"><div><strong>CookLikeMe</strong><p>Cook with what you have.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="builder.html">Build</a><a href="saved.html">Saved</a><a href="grocery.html">Grocery</a></div></div></footer>
   </main>
 
-  <nav class="mobile-nav">
-    <a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a><a href="meals.html" class="mobile-nav-link active"><span>⌕</span><small>Find</small></a><a href="builder.html" class="mobile-nav-link build-link"><span>＋</span><small>Build</small></a><a href="saved.html" class="mobile-nav-link"><span>♥</span><small>Saved</small></a><a href="grocery.html" class="mobile-nav-link"><span>▣</span><small>Grocery</small></a>
-  </nav>
+  <nav class="mobile-nav"><a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a><a href="meals.html" class="mobile-nav-link active"><span>⌕</span><small>Find</small></a><a href="builder.html" class="mobile-nav-link build-link"><span>＋</span><small>Build</small></a><a href="saved.html" class="mobile-nav-link"><span>♥</span><small>Saved</small></a><a href="grocery.html" class="mobile-nav-link"><span>▣</span><small>Grocery</small></a></nav>
 
   <script src="data/ingredients.js"></script>
   <script src="data/recipes.js"></script>
   <script src="data/recipe-upgrades.js"></script>
   <script src="data/app-cleanup.js"></script>
   <script src="meals.js"></script>
+  <script src="recipe-images.js"></script>
 </body>
 </html>
