@@ -10,8 +10,28 @@
       .slice(0, 90) || "meal";
   }
 
+  /*
+   * Some recipe titles are upgraded after recipes.js loads. A few of the
+   * first photo batches were created with shorter filenames, so keep those
+   * aliases here instead of forcing the user to rename/re-upload working art.
+   * New photos should use the final recipe title slug whenever possible.
+   */
+  const PHOTO_ALIASES = {
+    "Honey Garlic Wings with Yellow Rice & Cabbage": "honey-garlic-chicken-wings-yellow-rice-cabbage.webp",
+    "Jerk Salmon with Rice & Peas and Plantain": "jerk-salmon-with-rice-peas.webp",
+    "Smothered Pork Chops & Mashed Potatoes": "smothered-pork-chops-mashed-potatoes.webp",
+    "Garlic Parmesan Shrimp Alfredo": "cajun-shrimp-alfredo.webp",
+    "Steak Tips with Garlic Butter Rice & Broccoli": "garlic-butter-steak-over-rice.webp"
+  };
+
+  function imageCandidates(title) {
+    const exact = `${ROOT}${slugify(title)}.webp`;
+    const alias = PHOTO_ALIASES[String(title || "").trim()];
+    return alias ? [exact, `${ROOT}${alias}`] : [exact];
+  }
+
   function imagePath(title) {
-    return `${ROOT}${slugify(title)}.webp`;
+    return imageCandidates(title)[0];
   }
 
   function fallbackIcon(title) {
@@ -33,7 +53,10 @@
     wrap.className = `${className} recipe-photo-shell`;
 
     const img = document.createElement("img");
-    img.src = imagePath(title);
+    const candidates = imageCandidates(title);
+    let candidateIndex = 0;
+
+    img.src = candidates[candidateIndex];
     img.alt = title ? `${title} meal` : "CookLikeMe meal";
     img.loading = "lazy";
     img.decoding = "async";
@@ -44,6 +67,11 @@
 
     img.addEventListener("load", () => wrap.classList.add("has-photo"));
     img.addEventListener("error", () => {
+      candidateIndex += 1;
+      if (candidateIndex < candidates.length) {
+        img.src = candidates[candidateIndex];
+        return;
+      }
       img.remove();
       wrap.classList.add("photo-missing");
     });
@@ -134,7 +162,7 @@
   const observer = new MutationObserver(() => requestAnimationFrame(decorate));
   observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 
-  window.CLMRecipeVisuals = { slugify, imagePath, decorate };
+  window.CLMRecipeVisuals = { slugify, imagePath, imageCandidates, decorate };
   document.addEventListener("DOMContentLoaded", decorate);
   setTimeout(decorate, 150);
 })();
