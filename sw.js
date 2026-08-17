@@ -1,4 +1,4 @@
-const CACHE_NAME = "cooklikeme-v2-2026-08-16";
+const CACHE_NAME = "cooklikeme-v2-2026-08-17-images";
 
 const APP_SHELL = [
   "./",
@@ -14,7 +14,9 @@ const APP_SHELL = [
   "./saved.css",
   "./grocery.css",
   "./cook.css",
+  "./recipe-images.css",
   "./pwa.js",
+  "./recipe-images.js",
   "./meals.js",
   "./builder.js",
   "./saved.js",
@@ -31,26 +33,19 @@ const APP_SHELL = [
 
 self.addEventListener("install", event => {
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
 });
 
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
-      ))
+      .then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
-
   event.respondWith(
     fetch(event.request)
       .then(response => {
@@ -63,11 +58,7 @@ self.addEventListener("fetch", event => {
       .catch(async () => {
         const cached = await caches.match(event.request);
         if (cached) return cached;
-
-        if (event.request.mode === "navigate") {
-          return caches.match("./index.html");
-        }
-
+        if (event.request.mode === "navigate") return caches.match("./index.html");
         return Response.error();
       })
   );
