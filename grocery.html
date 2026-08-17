@@ -3,371 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Grocery | CookLikeMe</title>
-
-  <meta
-    name="description"
-    content="Keep your CookLikeMe grocery list organized and ready for the store."
-  />
-
+  <meta name="description" content="Keep your CookLikeMe grocery list organized and ready for the store." />
   <meta name="theme-color" content="#0b0b0d" />
-
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="icon-192.png" />
-
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="grocery.css" />
 </head>
-
 <body>
-
   <header class="topbar">
     <div class="nav-shell">
-
       <a class="brand" href="index.html">
-
-        <div class="brand-mark">
-          CLM
-        </div>
-
-        <div class="brand-text">
-          <strong>CookLikeMe</strong>
-          <span>Cook with what you have.</span>
-        </div>
-
+        <div class="brand-mark">CLM</div>
+        <div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div>
       </a>
-
-
       <nav class="desktop-nav">
-
-        <a class="nav-link" href="index.html">
-          Home
-        </a>
-
-        <a class="nav-link" href="meals.html">
-          Find Meals
-        </a>
-
-        <a class="nav-link" href="builder.html">
-          Build My Plate
-        </a>
-
-        <a class="nav-link" href="saved.html">
-          Saved
-        </a>
-
-        <a class="nav-link active" href="grocery.html">
-          Grocery
-        </a>
-
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="meals.html">Find Meals</a>
+        <a class="nav-link" href="builder.html">Build My Plate</a>
+        <a class="nav-link" href="saved.html">Saved</a>
+        <a class="nav-link active" href="grocery.html">Grocery</a>
       </nav>
-
     </div>
   </header>
 
-
   <main>
-
-    <!-- HERO -->
     <section class="grocery-hero">
-
       <div class="page-shell">
-
-        <p class="eyebrow">
-          SHOPPING LIST
-        </p>
-
-        <h1>
-          Grocery
-        </h1>
-
-        <p class="grocery-intro">
-          Everything you add from recipes and custom plates lands here.
-          Check things off as you shop and keep the list organized.
-        </p>
-
+        <p class="eyebrow">SHOPPING LIST</p>
+        <h1>Grocery</h1>
+        <p class="grocery-intro">Everything you add from recipes and custom plates lands here. Check things off in the store, add your own extras, and keep the list clean.</p>
       </div>
-
     </section>
 
-
-    <!-- MAIN GROCERY AREA -->
     <section class="grocery-section">
-
       <div class="page-shell">
-
-        <!-- SUMMARY -->
         <section class="grocery-summary-card">
-
           <div>
-
-            <p class="section-kicker">
-              YOUR LIST
-            </p>
-
-            <h2>
-              Ready for the store?
-            </h2>
-
-            <p id="grocerySummaryText">
-              Your grocery list is empty.
-            </p>
-
+            <p class="section-kicker">YOUR LIST</p>
+            <h2>Ready for the store?</h2>
+            <p id="grocerySummaryText">Your grocery list is empty.</p>
           </div>
-
-
           <div class="grocery-summary-actions">
-
-            <button
-              id="clearCheckedBtn"
-              class="grocery-toolbar-btn"
-            >
-              Clear Checked
-            </button>
-
-            <button
-              id="clearGroceryBtn"
-              class="grocery-toolbar-btn danger"
-            >
-              Clear List
-            </button>
-
+            <button id="copyGroceryBtn" class="grocery-toolbar-btn">Copy List</button>
+            <button id="clearCheckedBtn" class="grocery-toolbar-btn">Clear Checked</button>
+            <button id="clearGroceryBtn" class="grocery-toolbar-btn danger">Clear List</button>
           </div>
-
         </section>
 
-
-        <!-- ADD CUSTOM -->
         <section class="grocery-add-card">
-
           <div class="grocery-add-heading">
-
             <div>
-
-              <p class="section-kicker">
-                ADD SOMETHING
-              </p>
-
-              <h2>
-                Need something extra?
-              </h2>
-
-              <p>
-                Add anything manually — it doesn't have to come from a recipe.
-              </p>
-
+              <p class="section-kicker">ADD SOMETHING</p>
+              <h2>Need something extra?</h2>
+              <p>Add anything manually — it doesn't have to come from a recipe.</p>
             </div>
-
           </div>
-
-
           <div class="grocery-add-row">
-
-            <input
-              type="text"
-              id="customGroceryInput"
-              placeholder="Milk, foil, hot sauce..."
-              autocomplete="off"
-            />
-
+            <input type="text" id="customGroceryInput" placeholder="Milk, foil, hot sauce..." autocomplete="off" />
             <select id="customGroceryCategory">
-
-              <option value="Other">
-                Other
-              </option>
-
-              <option value="Proteins">
-                Proteins
-              </option>
-
-              <option value="Carbs & Bases">
-                Carbs & Bases
-              </option>
-
-              <option value="Dairy & Rich Stuff">
-                Dairy & Rich Stuff
-              </option>
-
-              <option value="Produce">
-                Produce
-              </option>
-
-              <option value="Seasonings">
-                Seasonings
-              </option>
-
-              <option value="Sauces & Flavor">
-                Sauces & Flavor
-              </option>
-
-              <option value="Drinks">
-                Drinks
-              </option>
-
-              <option value="Dessert & Baking">
-                Dessert & Baking
-              </option>
-
+              <option value="auto">Auto-sort</option>
+              <option value="Proteins">Proteins</option>
+              <option value="Carbs & Bases">Carbs & Bases</option>
+              <option value="Dairy & Rich Stuff">Dairy & Rich Stuff</option>
+              <option value="Produce">Produce</option>
+              <option value="Seasonings">Seasonings</option>
+              <option value="Sauces & Flavor">Sauces & Flavor</option>
+              <option value="Drinks">Drinks</option>
+              <option value="Dessert & Baking">Dessert & Baking</option>
+              <option value="Other">Other</option>
             </select>
-
-
-            <button
-              id="addCustomGroceryBtn"
-              class="grocery-add-btn"
-            >
-              Add
-            </button>
-
+            <button id="addCustomGroceryBtn" class="grocery-add-btn">Add</button>
           </div>
-
         </section>
 
-
-        <!-- FILTERS -->
-        <section class="grocery-filter-row">
-
-          <div
-            id="groceryFilters"
-            class="grocery-filters"
-          >
-
-            <button
-              class="grocery-filter-btn active"
-              data-filter="all"
-            >
-              All
-            </button>
-
-            <button
-              class="grocery-filter-btn"
-              data-filter="needed"
-            >
-              Still Need
-            </button>
-
-            <button
-              class="grocery-filter-btn"
-              data-filter="checked"
-            >
-              Checked
-            </button>
-
+        <section class="grocery-tools-row">
+          <div class="grocery-search-wrap">
+            <input id="grocerySearchInput" type="search" placeholder="Search your list..." autocomplete="off" />
           </div>
-
-
-          <span
-            id="groceryCount"
-            class="grocery-count"
-          >
-            0 items
-          </span>
-
+          <div id="groceryFilters" class="grocery-filters">
+            <button class="grocery-filter-btn active" data-filter="all">All</button>
+            <button class="grocery-filter-btn" data-filter="needed">Still Need</button>
+            <button class="grocery-filter-btn" data-filter="checked">Checked</button>
+          </div>
+          <span id="groceryCount" class="grocery-count">0 items</span>
         </section>
 
+        <div id="groceryGroups" class="grocery-groups"></div>
 
-        <!-- GROUPED LIST -->
-        <div
-          id="groceryGroups"
-          class="grocery-groups"
-        ></div>
-
-
-        <!-- EMPTY -->
-        <div
-          id="groceryEmpty"
-          class="grocery-empty hidden"
-        >
-
-          <h2>
-            Nothing on the list yet.
-          </h2>
-
-          <p>
-            Add ingredients from Find Meals, Build My Plate,
-            Saved, or type something in yourself.
-          </p>
-
+        <div id="groceryEmpty" class="grocery-empty hidden">
+          <h2>Nothing on the list yet.</h2>
+          <p>Add ingredients from Find Meals, Build My Plate, Saved, or type something in yourself.</p>
           <div class="grocery-empty-actions">
-
-            <a
-              href="meals.html"
-              class="grocery-empty-link primary"
-            >
-              Find Meals
-            </a>
-
-            <a
-              href="builder.html"
-              class="grocery-empty-link"
-            >
-              Build My Plate
-            </a>
-
+            <a href="meals.html" class="grocery-empty-link primary">Find Meals</a>
+            <a href="builder.html" class="grocery-empty-link">Build My Plate</a>
           </div>
-
         </div>
-
       </div>
-
     </section>
-
 
     <footer class="site-footer">
-
       <div class="page-shell footer-inner">
-
-        <div>
-          <strong>CookLikeMe</strong>
-          <p>Cook with what you have.</p>
-        </div>
-
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="meals.html">Find Meals</a>
-          <a href="builder.html">Build</a>
-          <a href="saved.html">Saved</a>
-        </div>
-
+        <div><strong>CookLikeMe</strong><p>Cook with what you have.</p></div>
+        <div class="footer-links"><a href="index.html">Home</a><a href="meals.html">Find Meals</a><a href="builder.html">Build</a><a href="saved.html">Saved</a></div>
       </div>
-
     </footer>
-
   </main>
 
-
-  <!-- MOBILE NAV -->
   <nav class="mobile-nav">
-
-    <a href="index.html" class="mobile-nav-link">
-      <span>⌂</span>
-      <small>Home</small>
-    </a>
-
-    <a href="meals.html" class="mobile-nav-link">
-      <span>⌕</span>
-      <small>Find</small>
-    </a>
-
-    <a href="builder.html" class="mobile-nav-link build-link">
-      <span>＋</span>
-      <small>Build</small>
-    </a>
-
-    <a href="saved.html" class="mobile-nav-link">
-      <span>♥</span>
-      <small>Saved</small>
-    </a>
-
-    <a href="grocery.html" class="mobile-nav-link active">
-      <span>▣</span>
-      <small>Grocery</small>
-    </a>
-
+    <a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a>
+    <a href="meals.html" class="mobile-nav-link"><span>⌕</span><small>Find</small></a>
+    <a href="builder.html" class="mobile-nav-link build-link"><span>＋</span><small>Build</small></a>
+    <a href="saved.html" class="mobile-nav-link"><span>♥</span><small>Saved</small></a>
+    <a href="grocery.html" class="mobile-nav-link active"><span>▣</span><small>Grocery</small></a>
   </nav>
 
-
   <script src="grocery.js"></script>
-
 </body>
 </html>
