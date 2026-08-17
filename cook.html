@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cook Mode | CookLikeMe</title>
+  <meta name="description" content="Cook your CookLikeMe recipe one step at a time." />
   <meta name="theme-color" content="#0b0b0d" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="cook.css" />
 </head>
@@ -44,7 +47,6 @@
             <h2>What you need</h2>
             <ul id="cookIngredients" class="cook-list"></ul>
           </div>
-
           <div id="seasoningPanel" class="cook-panel hidden">
             <p class="section-kicker">MAKE IT HIT 🔥</p>
             <h2>Seasoning suggestion</h2>
@@ -55,10 +57,7 @@
 
         <section class="cook-main">
           <div class="cook-progress-wrap">
-            <div class="cook-progress-top">
-              <span id="stepCounter">Step 1</span>
-              <span id="progressText">0% done</span>
-            </div>
+            <div class="cook-progress-top"><span id="stepCounter">Step 1</span><span id="progressText">0% done</span></div>
             <div class="cook-progress-track"><div id="cookProgress" class="cook-progress-bar"></div></div>
           </div>
 
@@ -78,10 +77,7 @@
             <p class="section-kicker">THAT’S IT</p>
             <h2>Plate it up.</h2>
             <p>You made it through the whole recipe. Taste it, adjust anything you want, and eat while it’s hot.</p>
-            <div class="finish-actions">
-              <a href="saved.html" class="cook-btn primary">Go to Saved</a>
-              <a href="meals.html" class="cook-btn">Find Another Meal</a>
-            </div>
+            <div class="finish-actions"><a href="saved.html" class="cook-btn primary">Go to Saved</a><a href="meals.html" class="cook-btn">Find Another Meal</a></div>
           </div>
 
           <div class="all-steps-wrap">
@@ -94,6 +90,7 @@
     </section>
   </main>
 
+  <script src="pwa.js"></script>
   <script src="cook.js"></script>
 </body>
 </html>
