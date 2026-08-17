@@ -10,188 +10,28 @@
   <link rel="icon" type="image/png" href="icon-192.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="builder.css" />
+  <link rel="stylesheet" href="recipe-images.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="nav-shell">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">CLM</div>
-        <div class="brand-text">
-          <strong>CookLikeMe</strong>
-          <span>Cook with what you have.</span>
-        </div>
-      </a>
-
-      <nav class="desktop-nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="meals.html">Find Meals</a>
-        <a class="nav-link active" href="builder.html">Build My Plate</a>
-        <a class="nav-link" href="saved.html">Saved</a>
-        <a class="nav-link" href="grocery.html">Grocery</a>
-      </nav>
-    </div>
-  </header>
+  <header class="topbar"><div class="nav-shell"><a class="brand" href="index.html"><div class="brand-mark">CLM</div><div class="brand-text"><strong>CookLikeMe</strong><span>Cook with what you have.</span></div></a><nav class="desktop-nav"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="meals.html">Find Meals</a><a class="nav-link active" href="builder.html">Build My Plate</a><a class="nav-link" href="saved.html">Saved</a><a class="nav-link" href="grocery.html">Grocery</a></nav></div></header>
 
   <main>
-    <section class="builder-hero">
-      <div class="page-shell">
-        <p class="eyebrow">BUILD IT YOUR WAY</p>
-        <h1>Build My Plate</h1>
-        <p class="builder-intro">
-          Pick the food. CookLikeMe will handle the seasoning direction and turn your choices into a plate that actually makes sense.
-        </p>
-      </div>
-    </section>
-
-    <section class="builder-section">
-      <div class="page-shell">
-        <section class="builder-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">01 • PICK YOUR LANE</p>
-              <h2>Regular or Healthy?</h2>
-            </div>
-          </div>
-
-          <div id="builderModeTabs" class="builder-mode-tabs">
-            <button class="builder-mode-btn active" data-mode="regular">
-              <span>🍽️</span>
-              <div>
-                <strong>Regular</strong>
-                <small>Full CookLikeMe experience</small>
-              </div>
-            </button>
-
-            <button class="builder-mode-btn" data-mode="healthy">
-              <span>🥗</span>
-              <div>
-                <strong>Healthy</strong>
-                <small>Fitness-friendly plate</small>
-              </div>
-            </button>
-          </div>
-        </section>
-
-        <section class="builder-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">02 • START HERE</p>
-              <h2>Pick your protein</h2>
-              <p>This is the main character.</p>
-            </div>
-          </div>
-          <div id="proteinOptions" class="builder-options-grid"></div>
-        </section>
-
-        <section class="builder-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">03 • BUILD AROUND IT</p>
-              <h2>Choose a base</h2>
-              <p>Rice, pasta, potatoes, grains or whatever fits.</p>
-            </div>
-          </div>
-          <div id="baseOptions" class="builder-options-grid"></div>
-        </section>
-
-        <section class="builder-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">04 • ROUND IT OUT</p>
-              <h2>Add a side</h2>
-            </div>
-          </div>
-          <div id="sideOptions" class="builder-options-grid"></div>
-        </section>
-
-        <section class="builder-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">05 • EXTRAS</p>
-              <h2>Add vegetables & extras</h2>
-              <p>Pick as many as you want.</p>
-            </div>
-          </div>
-          <div id="extraOptions" class="builder-options-grid"></div>
-        </section>
-
-        <section class="builder-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">06 • GIVE IT SOME SAUCE</p>
-              <h2>Pick your flavor</h2>
-              <p>Choose the flavor direction. CookLikeMe will recommend the everyday seasonings for the finished plate.</p>
-            </div>
-          </div>
-          <div id="flavorOptions" class="builder-options-grid"></div>
-        </section>
-
-        <section class="builder-block builder-summary-block">
-          <div class="builder-heading">
-            <div>
-              <p class="section-kicker">YOUR PLATE</p>
-              <h2>Looking good?</h2>
-            </div>
-            <button id="resetBuilderBtn" class="builder-reset-btn">Start Over</button>
-          </div>
-
-          <div id="platePreview" class="plate-preview"></div>
-          <button id="generatePlateBtn" class="generate-plate-btn">Generate My Plate</button>
-        </section>
-
-        <section id="generatedSection" class="generated-section hidden">
-          <div class="generated-card">
-            <p class="section-kicker">COOKLIKEME CUSTOM</p>
-            <h2 id="generatedTitle"></h2>
-            <p id="generatedDescription" class="generated-description"></p>
-            <div id="generatedMeta" class="generated-meta"></div>
-
-            <div class="generated-columns">
-              <div>
-                <h3>What's in it</h3>
-                <ul id="generatedIngredients" class="generated-list"></ul>
-              </div>
-              <div>
-                <h3>How it comes together</h3>
-                <ol id="generatedInstructions" class="generated-list"></ol>
-              </div>
-            </div>
-
-            <div class="generated-actions">
-              <button id="savePlateBtn" class="generated-btn primary">Save Plate ♥</button>
-              <button id="addPlateToGroceryBtn" class="generated-btn">Add to Grocery</button>
-              <button id="buildAnotherBtn" class="generated-btn">Build Another</button>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="page-shell footer-inner">
-        <div>
-          <strong>CookLikeMe</strong>
-          <p>Cook with what you have.</p>
-        </div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="meals.html">Find Meals</a>
-          <a href="saved.html">Saved</a>
-          <a href="grocery.html">Grocery</a>
-        </div>
-      </div>
-    </footer>
+    <section class="builder-hero"><div class="page-shell"><p class="eyebrow">BUILD IT YOUR WAY</p><h1>Build My Plate</h1><p class="builder-intro">Pick the food. CookLikeMe will handle the seasoning direction and turn your choices into a plate that actually makes sense.</p></div></section>
+    <section class="builder-section"><div class="page-shell">
+      <section class="builder-block"><div class="builder-heading"><div><p class="section-kicker">01 • PICK YOUR LANE</p><h2>Regular or Healthy?</h2></div></div><div id="builderModeTabs" class="builder-mode-tabs"><button class="builder-mode-btn active" data-mode="regular"><span>🍽️</span><div><strong>Regular</strong><small>Full CookLikeMe experience</small></div></button><button class="builder-mode-btn" data-mode="healthy"><span>🥗</span><div><strong>Healthy</strong><small>Fitness-friendly plate</small></div></button></div></section>
+      <section class="builder-block"><div class="builder-heading"><div><p class="section-kicker">02 • START HERE</p><h2>Pick your protein</h2><p>This is the main character.</p></div></div><div id="proteinOptions" class="builder-options-grid"></div></section>
+      <section class="builder-block"><div class="builder-heading"><div><p class="section-kicker">03 • BUILD AROUND IT</p><h2>Choose a base</h2><p>Rice, pasta, potatoes, grains or whatever fits.</p></div></div><div id="baseOptions" class="builder-options-grid"></div></section>
+      <section class="builder-block"><div class="builder-heading"><div><p class="section-kicker">04 • ROUND IT OUT</p><h2>Add a side</h2></div></div><div id="sideOptions" class="builder-options-grid"></div></section>
+      <section class="builder-block"><div class="builder-heading"><div><p class="section-kicker">05 • EXTRAS</p><h2>Add vegetables & extras</h2><p>Pick as many as you want.</p></div></div><div id="extraOptions" class="builder-options-grid"></div></section>
+      <section class="builder-block"><div class="builder-heading"><div><p class="section-kicker">06 • GIVE IT SOME SAUCE</p><h2>Pick your flavor</h2><p>Choose the flavor direction. CookLikeMe will recommend the everyday seasonings for the finished plate.</p></div></div><div id="flavorOptions" class="builder-options-grid"></div></section>
+      <section class="builder-block builder-summary-block"><div class="builder-heading"><div><p class="section-kicker">YOUR PLATE</p><h2>Looking good?</h2></div><button id="resetBuilderBtn" class="builder-reset-btn">Start Over</button></div><div id="platePreview" class="plate-preview"></div><button id="generatePlateBtn" class="generate-plate-btn">Generate My Plate</button></section>
+      <section id="generatedSection" class="generated-section hidden"><div class="generated-card"><p class="section-kicker">COOKLIKEME CUSTOM</p><h2 id="generatedTitle"></h2><p id="generatedDescription" class="generated-description"></p><div id="generatedMeta" class="generated-meta"></div><div class="generated-columns"><div><h3>What's in it</h3><ul id="generatedIngredients" class="generated-list"></ul></div><div><h3>How it comes together</h3><ol id="generatedInstructions" class="generated-list"></ol></div></div><div class="generated-actions"><button id="savePlateBtn" class="generated-btn primary">Save Plate ♥</button><button id="addPlateToGroceryBtn" class="generated-btn">Add to Grocery</button><button id="buildAnotherBtn" class="generated-btn">Build Another</button></div></div></section>
+    </div></section>
+    <footer class="site-footer"><div class="page-shell footer-inner"><div><strong>CookLikeMe</strong><p>Cook with what you have.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="meals.html">Find Meals</a><a href="saved.html">Saved</a><a href="grocery.html">Grocery</a></div></div></footer>
   </main>
-
-  <nav class="mobile-nav">
-    <a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a>
-    <a href="meals.html" class="mobile-nav-link"><span>⌕</span><small>Find</small></a>
-    <a href="builder.html" class="mobile-nav-link build-link active"><span>＋</span><small>Build</small></a>
-    <a href="saved.html" class="mobile-nav-link"><span>♥</span><small>Saved</small></a>
-    <a href="grocery.html" class="mobile-nav-link"><span>▣</span><small>Grocery</small></a>
-  </nav>
-
+  <nav class="mobile-nav"><a href="index.html" class="mobile-nav-link"><span>⌂</span><small>Home</small></a><a href="meals.html" class="mobile-nav-link"><span>⌕</span><small>Find</small></a><a href="builder.html" class="mobile-nav-link build-link active"><span>＋</span><small>Build</small></a><a href="saved.html" class="mobile-nav-link"><span>♥</span><small>Saved</small></a><a href="grocery.html" class="mobile-nav-link"><span>▣</span><small>Grocery</small></a></nav>
   <script src="data/ingredients.js"></script>
   <script src="builder.js"></script>
+  <script src="recipe-images.js"></script>
 </body>
 </html>
