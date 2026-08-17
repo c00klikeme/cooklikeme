@@ -1,4 +1,4 @@
-const CACHE_NAME = "cooklikeme-v2-2026-08";
+const CACHE_NAME = "cooklikeme-v2-2026-08-16";
 
 const APP_SHELL = [
   "./",
@@ -7,19 +7,23 @@ const APP_SHELL = [
   "./builder.html",
   "./saved.html",
   "./grocery.html",
+  "./cook.html",
   "./style.css",
   "./meals.css",
   "./builder.css",
   "./saved.css",
   "./grocery.css",
+  "./cook.css",
+  "./pwa.js",
   "./meals.js",
   "./builder.js",
   "./saved.js",
   "./grocery.js",
+  "./cook.js",
   "./data/ingredients.js",
   "./data/recipes.js",
   "./data/recipe-upgrades.js",
-  "./data/ingredient-cleanup.js",
+  "./data/app-cleanup.js",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png"
@@ -35,7 +39,11 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
+      .then(keys => Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      ))
       .then(() => self.clients.claim())
   );
 });
@@ -46,10 +54,21 @@ self.addEventListener("fetch", event => {
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        if (response && response.status === 200) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        }
         return response;
       })
-      .catch(() => caches.match(event.request).then(cached => cached || caches.match("./index.html")))
+      .catch(async () => {
+        const cached = await caches.match(event.request);
+        if (cached) return cached;
+
+        if (event.request.mode === "navigate") {
+          return caches.match("./index.html");
+        }
+
+        return Response.error();
+      })
   );
 });
